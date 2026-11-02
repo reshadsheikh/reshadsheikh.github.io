@@ -1,36 +1,62 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfolio | Reshad Sheikh</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=Montserrat:wght@800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        limeAccent: '#B0E454',
+                        limeAccentDark: '#8DC234',
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Montserrat:wght@800&family=Playfair+Display:ital,wght@1,400;1,600&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
             scroll-behavior: smooth;
+            transition: background-color 0.4s ease, color 0.4s ease;
         }
+
         .glass {
             background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
         }
+
+        html:not(.dark) .glass {
+            background: rgba(255, 255, 255, 0.65);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(0, 0, 0, 0.07);
+        }
+
         .mobile-glass {
             background: rgba(10, 10, 10, 0.95);
             backdrop-filter: blur(16px);
         }
 
-        /* Navbar Hide/Show Transition */
+        html:not(.dark) .mobile-glass {
+            background: rgba(255, 255, 255, 0.96);
+            backdrop-filter: blur(16px);
+        }
+
+        /* Navbar Transition */
         #navbar {
             transition: transform 0.3s ease-in-out, background-color 0.3s ease;
         }
-        .nav-hidden {
-            transform: translateY(-100%);
-        }
 
-        /* Custom subtle horizontal scrollbar styling */
+        /* Subtle scrollbar */
         .horizontal-scroll::-webkit-scrollbar {
             height: 6px;
         }
@@ -38,28 +64,52 @@
             background: rgba(255, 255, 255, 0.02);
             border-radius: 9999px;
         }
+        html:not(.dark) .horizontal-scroll::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.03);
+        }
         .horizontal-scroll::-webkit-scrollbar-thumb {
-            background: rgba(255, 255, 255, 0.15);
+            background: rgba(176, 228, 84, 0.3);
             border-radius: 9999px;
         }
         .horizontal-scroll::-webkit-scrollbar-thumb:hover {
-            background: rgba(255, 255, 255, 0.3);
+            background: rgba(176, 228, 84, 0.6);
         }
 
-        /* Particle Background Styling & Animation */
+        /* Status Dot Pulse Animation */
+        @keyframes pulse-lime {
+            0% { background-color: #B0E454; opacity: 1; box-shadow: 0 0 0 0px rgba(176, 228, 84, 0.7); }
+            50% { opacity: 0.4; box-shadow: 0 0 0 6px rgba(176, 228, 84, 0); }
+            100% { background-color: #B0E454; opacity: 1; box-shadow: 0 0 0 0px rgba(176, 228, 84, 0.7); }
+        }
+        .status-dot {
+            animation: pulse-lime 2s infinite ease-in-out;
+        }
+
+        /* Floating Background Particles */
         .particle-bg {
             position: fixed;
             inset: 0;
             pointer-events: none;
-            z-index: -1;
+            z-index: 1;
             overflow: hidden;
         }
 
-        .particle {
+        .dark .particle {
             position: absolute;
             border-radius: 50%;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.2) 60%, rgba(255, 255, 255, 0) 100%);
-            box-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.85) 0%, rgba(255, 255, 255, 0.25) 60%, rgba(255, 255, 255, 0) 100%);
+            box-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
+            animation-name: float-random;
+            animation-iteration-count: infinite;
+            animation-timing-function: ease-in-out;
+            will-change: transform, opacity;
+        }
+
+        html:not(.dark) .particle {
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(15, 23, 42, 0.7) 0%, rgba(15, 23, 42, 0.15) 60%, rgba(15, 23, 42, 0) 100%);
+            box-shadow: 0 0 6px rgba(0, 0, 0, 0.15);
             animation-name: float-random;
             animation-iteration-count: infinite;
             animation-timing-function: ease-in-out;
@@ -69,108 +119,118 @@
         @keyframes float-random {
             0% {
                 transform: translate(0, 0) scale(1) rotate(0deg);
-                opacity: 0.2;
+                opacity: 0.15;
             }
             25% {
-                transform: translate(40px, -60px) scale(1.2) rotate(90deg);
-                opacity: 0.7;
+                transform: translate(35px, -50px) scale(1.2) rotate(90deg);
+                opacity: 0.6;
             }
             50% {
-                transform: translate(-30px, -120px) scale(0.8) rotate(180deg);
-                opacity: 0.4;
+                transform: translate(-25px, -100px) scale(0.85) rotate(180deg);
+                opacity: 0.3;
             }
             75% {
-                transform: translate(50px, -180px) scale(1.1) rotate(270deg);
-                opacity: 0.8;
+                transform: translate(45px, -150px) scale(1.1) rotate(270deg);
+                opacity: 0.7;
             }
             100% {
-                transform: translate(0, -240px) scale(1) rotate(360deg);
-                opacity: 0.2;
+                transform: translate(0, -210px) scale(1) rotate(360deg);
+                opacity: 0.15;
             }
-        }
-        
-        @keyframes pulse-green {
-            0% { background-color: #10b981; opacity: 1; box-shadow: 0 0 0 0px rgba(16, 185, 129, 0.7); }
-            50% { background-color: #000000; opacity: 0.5; box-shadow: 0 0 0 3px rgba(16, 185, 129, 0); }
-            100% { background-color: #10b981; opacity: 1; box-shadow: 0 0 0 0px rgba(16, 185, 129, 0.7); }
-        }
-        .status-dot {
-            animation: pulse-green 2s infinite ease-in-out;
         }
     </style>
 </head>
-<body class="bg-[#0a0a0a] text-white selection:bg-white selection:text-black min-h-screen flex flex-col justify-between">
+<body class="bg-[#0a0a0a] text-white dark:bg-[#0a0a0a] dark:text-white bg-slate-50 text-slate-900 selection:bg-[#B0E454] selection:text-black transition-colors duration-300 min-h-screen flex flex-col justify-between">
 
-    <!-- Dynamic Animated Particle Background Container -->
+    <!-- Global Floating Particles Background -->
     <div id="particle-bg" class="particle-bg"></div>
 
-    <!-- Navigation Header (Scroll-aware hide/show) -->
-    <nav id="navbar" class="fixed top-0 w-full z-50 glass border-b border-white/5 py-3.5">
+    <!-- Main Navigation Bar -->
+    <nav id="navbar" class="fixed top-0 w-full z-50 glass border-b border-white/5 dark:border-white/5 border-black/5 py-4 transition-all duration-300">
         <div class="max-w-6xl mx-auto px-6 flex justify-between items-center">
-            <!-- Main Logo linking to GitHub root homepage -->
-            <a href="https://reshadsheikh.github.io/" class="text-lg font-bold tracking-tighter uppercase">Reshad<span class="text-gray-500">.</span></a>
+            <a href="https://reshadsheikh.github.io/" class="text-xl font-bold tracking-tighter uppercase dark:text-white text-slate-900">
+                Reshad<span class="text-[#B0E454]">.</span>
+            </a>
             
-            <!-- Desktop Navigation -->
-            <div class="hidden md:flex items-center gap-7">
-                <div class="flex gap-7 text-xs font-medium tracking-wide uppercase">
-                    <a href="/#home" class="hover:text-gray-400 transition-colors">Home</a>
-                    <a href="/#about" class="hover:text-gray-400 transition-colors">About</a>
-                    <a href="/portfolio" class="text-white border-b border-white pb-0.5">Portfolio</a>
-                    <a href="/#skills" class="hover:text-gray-400 transition-colors">Skills</a>
-                    <a href="/#experience" class="hover:text-gray-400 transition-colors">Experience</a>
+            <!-- Desktop Navigation Links & Action Buttons -->
+            <div class="hidden md:flex items-center gap-8">
+                <div class="flex gap-8 text-xs font-semibold tracking-widest uppercase dark:text-gray-300 text-gray-700">
+                    <a href="/#home" class="hover:text-[#B0E454] transition-colors">Home</a>
+                    <a href="/#about" class="hover:text-[#B0E454] transition-colors">About</a>
+                    <a href="/portfolio" class="text-[#B0E454] font-bold border-b-2 border-[#B0E454] pb-0.5">Portfolio</a>
+                    <a href="/#skills" class="hover:text-[#B0E454] transition-colors">Skills</a>
+                    <a href="/#experience" class="hover:text-[#B0E454] transition-colors">Experience</a>
                 </div>
-                <a href="/#contact" class="bg-white text-black px-5 py-2 rounded-full text-xs font-bold hover:bg-gray-200 transition-all duration-300">
-                    Let's Talk
-                </a>
+
+                <div class="flex items-center gap-4">
+                    <!-- Modern Simple Theme Switcher Icon -->
+                    <button id="theme-toggle" class="p-2 rounded-full border dark:border-white/10 border-black/10 text-gray-700 dark:text-gray-300 hover:bg-black/5 dark:hover:bg-white/10 transition-all duration-300 focus:outline-none" aria-label="Switch Theme">
+                        <i data-lucide="sun" id="theme-icon-sun" class="w-4 h-4 hidden dark:block text-[#B0E454]"></i>
+                        <i data-lucide="moon" id="theme-icon-moon" class="w-4 h-4 block dark:hidden text-slate-700"></i>
+                    </button>
+
+                    <a href="/#contact" class="dark:bg-white dark:text-black bg-slate-900 text-white px-5 py-2 rounded-full text-xs font-bold hover:bg-[#B0E454] dark:hover:bg-[#B0E454] dark:hover:text-black transition-all duration-300">
+                        Let's Talk
+                    </a>
+                </div>
             </div>
 
-            <!-- Mobile Hamburger/Close Button -->
-            <button id="menu-btn" class="md:hidden text-white focus:outline-none p-1.5 rounded-lg hover:bg-white/5 transition" aria-label="Toggle Menu">
-                <i data-lucide="menu" id="icon-hamburger" class="w-5 h-5 block"></i>
-                <i data-lucide="x" id="icon-close" class="w-5 h-5 hidden"></i>
-            </button>
+            <!-- Mobile Controls (Theme Switcher + Menu Button) -->
+            <div class="flex items-center gap-3 md:hidden">
+                <button id="mobile-theme-toggle" class="p-2 rounded-full border dark:border-white/10 border-black/10 text-gray-700 dark:text-gray-300 hover:bg-black/5 dark:hover:bg-white/10 transition focus:outline-none" aria-label="Switch Theme">
+                    <i data-lucide="sun" class="w-4 h-4 hidden dark:block text-[#B0E454]"></i>
+                    <i data-lucide="moon" class="w-4 h-4 block dark:hidden text-slate-700"></i>
+                </button>
+
+                <button id="menu-btn" class="dark:text-white text-slate-900 focus:outline-none p-2 rounded-lg hover:bg-black/5 dark:hover:bg-white/5 transition" aria-label="Toggle Menu">
+                    <i data-lucide="menu" id="icon-hamburger" class="w-6 h-6 block"></i>
+                    <i data-lucide="x" id="icon-close" class="w-6 h-6 hidden"></i>
+                </button>
+            </div>
         </div>
     </nav>
 
     <!-- Mobile Navigation Drawer Overlay -->
-    <div id="mobile-menu" class="fixed inset-0 z-40 mobile-glass border-b border-white/10 flex flex-col justify-between p-6 pt-24 transition-all duration-300 opacity-0 pointer-events-none -translate-y-4 md:hidden">
-        <div class="flex flex-col gap-5 text-lg font-bold uppercase tracking-wider">
-            <a href="/#home" class="mobile-link hover:text-gray-400 transition-colors py-2 border-b border-white/5">Home</a>
-            <a href="/#about" class="mobile-link hover:text-gray-400 transition-colors py-2 border-b border-white/5">About</a>
-            <a href="/portfolio" class="mobile-link text-white py-2 border-b border-white/5">Portfolio</a>
-            <a href="/#skills" class="mobile-link hover:text-gray-400 transition-colors py-2 border-b border-white/5">Skills</a>
-            <a href="/#experience" class="mobile-link hover:text-gray-400 transition-colors py-2 border-b border-white/5">Experience</a>
+    <div id="mobile-menu" class="fixed inset-0 z-40 mobile-glass border-b border-white/10 flex flex-col justify-between p-8 pt-28 transition-all duration-300 opacity-0 pointer-events-none -translate-y-4 md:hidden">
+        <div class="flex flex-col gap-6 text-xl font-bold uppercase tracking-wider dark:text-white text-slate-900">
+            <a href="/#home" class="mobile-link hover:text-[#B0E454] transition-colors py-2 border-b dark:border-white/5 border-black/5">Home</a>
+            <a href="/#about" class="mobile-link hover:text-[#B0E454] transition-colors py-2 border-b dark:border-white/5 border-black/5">About</a>
+            <a href="/portfolio" class="mobile-link text-[#B0E454] py-2 border-b dark:border-white/5 border-black/5">Portfolio</a>
+            <a href="/#skills" class="mobile-link hover:text-[#B0E454] transition-colors py-2 border-b dark:border-white/5 border-black/5">Skills</a>
+            <a href="/#experience" class="mobile-link hover:text-[#B0E454] transition-colors py-2 border-b dark:border-white/5 border-black/5">Experience</a>
         </div>
-        <div class="pt-4">
-            <a href="/#contact" class="mobile-link w-full block text-center bg-white text-black py-3 rounded-full text-sm font-bold hover:bg-gray-200 transition">
+        <div class="pt-6">
+            <a href="/#contact" class="mobile-link w-full block text-center dark:bg-white dark:text-black bg-slate-900 text-white py-4 rounded-full text-base font-bold hover:bg-[#B0E454] transition">
                 Let's Talk
             </a>
         </div>
     </div>
 
     <!-- Main Portfolio Body -->
-    <main class="pt-24 pb-16 px-6 max-w-6xl mx-auto w-full space-y-16">
+    <main class="relative z-10 pt-28 pb-20 px-6 max-w-6xl mx-auto w-full space-y-16">
         
         <!-- Page Header -->
-        <div class="text-center max-w-2xl mx-auto space-y-2">
-            <span class="text-[11px] uppercase tracking-widest text-gray-400 font-bold bg-white/5 px-3 py-1 rounded-full border border-white/5 inline-block">Selected Work & Case Studies</span>
-            <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight">My Portfolio</h1>
-            <p class="text-gray-400 text-sm md:text-base">Explore technical SEO audit dashboards and UI/UX design case studies.</p>
+        <div class="text-center max-w-2xl mx-auto space-y-3">
+            <span class="text-[10px] sm:text-xs uppercase tracking-widest text-[#B0E454] font-bold dark:bg-[#B0E454]/10 bg-[#B0E454]/20 px-4 py-1.5 rounded-full border border-[#B0E454]/30 inline-block">
+                Selected Work & Case Studies
+            </span>
+            <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight dark:text-white text-slate-900">My Portfolio</h1>
+            <p class="dark:text-gray-400 text-slate-600 text-sm md:text-base">Explore technical SEO audit dashboards and UI/UX design case studies.</p>
         </div>
 
         <!-- SECTION 1: SEO AUDIT DASHBOARDS (Horizontal Showcase) -->
         <section id="seo-section" class="space-y-6">
-            <div class="flex items-center justify-between border-b border-white/10 pb-3">
-                <div class="flex items-center gap-2.5">
-                    <div class="p-2 bg-emerald-500/10 text-emerald-400 rounded-lg">
-                        <i data-lucide="search-check" class="w-5 h-5"></i>
+            <div class="flex items-center justify-between border-b dark:border-white/10 border-black/10 pb-3">
+                <div class="flex items-center gap-3">
+                    <div class="p-2.5 bg-[#B0E454]/15 text-[#B0E454] rounded-xl border border-[#B0E454]/20">
+                        <i data-lucide="search-check" class="w-5 h-5 dark:text-[#B0E454] text-slate-900"></i>
                     </div>
                     <div>
-                        <h2 class="text-lg md:text-xl font-bold">SEO Projects & Dashboards</h2>
-                        <p class="text-[11px] text-gray-400">Interactive live audit reports and technical evaluations</p>
+                        <h2 class="text-lg md:text-xl font-bold dark:text-white text-slate-900">SEO Projects & Dashboards</h2>
+                        <p class="text-xs dark:text-gray-400 text-slate-500">Interactive live audit reports and technical evaluations</p>
                     </div>
                 </div>
-                <span class="text-[11px] text-gray-500 font-mono hidden sm:inline-block">Swipe to explore →</span>
+                <span class="text-xs text-[#B0E454] font-semibold tracking-wider hidden sm:inline-block">Swipe to explore →</span>
             </div>
 
             <!-- Horizontal Scrollable Showcase Track -->
@@ -178,15 +238,15 @@
                 
                 <!-- SEO Project 1: goFLY Audit Dashboard Window -->
                 <div class="w-[85vw] sm:w-[460px] lg:w-[500px] snap-start shrink-0 space-y-3">
-                    <div class="glass rounded-2xl border border-white/10 overflow-hidden shadow-xl group transition duration-300 hover:border-white/30">
-                        <div class="bg-[#18181b] px-3.5 py-2.5 flex items-center justify-between border-b border-white/10">
+                    <div class="glass rounded-2xl dark:border-white/10 border-black/10 overflow-hidden shadow-xl group transition duration-300 hover:border-[#B0E454]/50">
+                        <div class="bg-slate-950 dark:bg-[#18181b] px-3.5 py-2.5 flex items-center justify-between border-b dark:border-white/10 border-black/10">
                             <div class="flex items-center gap-2">
                                 <span class="w-2.5 h-2.5 rounded-full bg-red-500/80 inline-block"></span>
                                 <span class="w-2.5 h-2.5 rounded-full bg-yellow-500/80 inline-block"></span>
                                 <span class="w-2.5 h-2.5 rounded-full bg-green-500/80 inline-block"></span>
                                 <span class="text-[11px] text-gray-400 font-mono ml-1.5">seo/gofly-seo-audit</span>
                             </div>
-                            <a href="/portfolio/seo/gofly-seo-audit/" target="_blank" class="text-[11px] text-gray-400 hover:text-white flex items-center gap-1 transition">
+                            <a href="/portfolio/seo/gofly-seo-audit/" target="_blank" class="text-[11px] text-[#B0E454] hover:underline flex items-center gap-1 transition">
                                 <span>Full View</span>
                                 <i data-lucide="external-link" class="w-3 h-3"></i>
                             </a>
@@ -196,22 +256,22 @@
                         </div>
                     </div>
                     
-                    <div class="p-3.5 glass rounded-xl border border-white/5 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                    <div class="p-4 glass rounded-xl dark:border-white/5 border-black/5 flex flex-col sm:flex-row sm:items-center justify-between gap-3 shadow-sm">
                         <div>
-                            <h3 class="text-sm font-bold text-white">goFLY Website SEO Technical Audit</h3>
-                            <p class="text-[11px] text-gray-400 mt-0.5">Comprehensive 33-point health analysis for goflybd.com</p>
+                            <h3 class="text-sm font-bold dark:text-white text-slate-900">goFLY Website SEO Technical Audit</h3>
+                            <p class="text-xs dark:text-gray-400 text-slate-600 mt-0.5">Comprehensive 33-point health analysis for goflybd.com</p>
                         </div>
-                        <a href="/portfolio/seo/gofly-seo-audit/" target="_blank" class="inline-flex items-center justify-center gap-1.5 px-3.5 py-2 bg-white text-black text-[11px] font-bold rounded-lg hover:bg-gray-200 transition shrink-0">
+                        <a href="/portfolio/seo/gofly-seo-audit/" target="_blank" class="inline-flex items-center justify-center gap-1.5 px-4 py-2 bg-[#B0E454] text-black text-xs font-bold rounded-full hover:bg-slate-900 hover:text-white dark:hover:bg-white dark:hover:text-black transition shrink-0">
                             <span>Open Dashboard</span>
-                            <i data-lucide="arrow-up-right" class="w-3 h-3"></i>
+                            <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
                         </a>
                     </div>
                 </div>
 
                 <!-- SEO Project Placeholder -->
                 <div class="w-[85vw] sm:w-[460px] lg:w-[500px] snap-start shrink-0 space-y-3">
-                    <div class="glass rounded-2xl border border-dashed border-white/20 overflow-hidden">
-                        <div class="bg-[#18181b] px-3.5 py-2.5 flex items-center justify-between border-b border-white/10">
+                    <div class="glass rounded-2xl border border-dashed dark:border-white/20 border-black/20 overflow-hidden">
+                        <div class="bg-slate-950 dark:bg-[#18181b] px-3.5 py-2.5 flex items-center justify-between border-b dark:border-white/10 border-black/10">
                             <div class="flex items-center gap-2">
                                 <span class="w-2.5 h-2.5 rounded-full bg-red-500/80 inline-block"></span>
                                 <span class="w-2.5 h-2.5 rounded-full bg-yellow-500/80 inline-block"></span>
@@ -220,16 +280,16 @@
                             </div>
                         </div>
                         <div class="w-full h-[200px] sm:h-[260px] flex flex-col items-center justify-center p-6 text-center">
-                            <div class="p-3.5 bg-white/5 rounded-full mb-2">
-                                <i data-lucide="plus" class="w-5 h-5 text-gray-400"></i>
+                            <div class="p-3.5 bg-[#B0E454]/10 rounded-full mb-2">
+                                <i data-lucide="plus" class="w-5 h-5 text-[#B0E454]"></i>
                             </div>
-                            <h4 class="text-xs font-bold text-gray-300">Add Next SEO Dashboard</h4>
-                            <p class="text-[11px] text-gray-500 max-w-xs mt-1">Create a new folder inside `seo/` and duplicate this block.</p>
+                            <h4 class="text-xs font-bold dark:text-gray-300 text-slate-700">Add Next SEO Dashboard</h4>
+                            <p class="text-[11px] dark:text-gray-500 text-slate-500 max-w-xs mt-1">Create a new folder inside `seo/` and duplicate this block.</p>
                         </div>
                     </div>
-                    <div class="p-3.5 glass rounded-xl border border-white/5">
-                        <h3 class="text-xs font-bold text-gray-400">Upcoming Audit Project</h3>
-                        <p class="text-[11px] text-gray-600">Reserved dashboard slot</p>
+                    <div class="p-4 glass rounded-xl dark:border-white/5 border-black/5">
+                        <h3 class="text-xs font-bold dark:text-gray-400 text-slate-700">Upcoming Audit Project</h3>
+                        <p class="text-[11px] dark:text-gray-500 text-slate-500">Reserved dashboard slot</p>
                     </div>
                 </div>
 
@@ -238,17 +298,17 @@
 
         <!-- SECTION 2: UI/UX DESIGN SECTION (Horizontal Showcase) -->
         <section id="uiux-section" class="space-y-6">
-            <div class="flex items-center justify-between border-b border-white/10 pb-3">
-                <div class="flex items-center gap-2.5">
-                    <div class="p-2 bg-cyan-500/10 text-cyan-400 rounded-lg">
-                        <i data-lucide="layout" class="w-5 h-5"></i>
+            <div class="flex items-center justify-between border-b dark:border-white/10 border-black/10 pb-3">
+                <div class="flex items-center gap-3">
+                    <div class="p-2.5 bg-[#B0E454]/15 text-[#B0E454] rounded-xl border border-[#B0E454]/20">
+                        <i data-lucide="layout" class="w-5 h-5 dark:text-[#B0E454] text-slate-900"></i>
                     </div>
                     <div>
-                        <h2 class="text-lg md:text-xl font-bold">UI/UX Design Projects</h2>
-                        <p class="text-[11px] text-gray-400">Interface concepts, visual layouts, and wireframes</p>
+                        <h2 class="text-lg md:text-xl font-bold dark:text-white text-slate-900">UI/UX Design Projects</h2>
+                        <p class="text-xs dark:text-gray-400 text-slate-500">Interface concepts, visual layouts, and wireframes</p>
                     </div>
                 </div>
-                <span class="text-[11px] text-gray-500 font-mono hidden sm:inline-block">Swipe to explore →</span>
+                <span class="text-xs text-[#B0E454] font-semibold tracking-wider hidden sm:inline-block">Swipe to explore →</span>
             </div>
 
             <!-- Horizontal Scrollable Showcase Track -->
@@ -256,8 +316,8 @@
                 
                 <!-- UI/UX Window 1 -->
                 <div class="w-[85vw] sm:w-[460px] lg:w-[500px] snap-start shrink-0 space-y-3">
-                    <div class="glass rounded-2xl border border-white/10 overflow-hidden shadow-xl group hover:border-white/30 transition">
-                        <div class="bg-[#18181b] px-3.5 py-2.5 flex items-center justify-between border-b border-white/10">
+                    <div class="glass rounded-2xl dark:border-white/10 border-black/10 overflow-hidden shadow-xl group hover:border-[#B0E454]/50 transition duration-300">
+                        <div class="bg-slate-950 dark:bg-[#18181b] px-3.5 py-2.5 flex items-center justify-between border-b dark:border-white/10 border-black/10">
                             <div class="flex items-center gap-2">
                                 <span class="w-2.5 h-2.5 rounded-full bg-red-500/80 inline-block"></span>
                                 <span class="w-2.5 h-2.5 rounded-full bg-yellow-500/80 inline-block"></span>
@@ -269,16 +329,16 @@
                             <img src="/ui-project-1.jpg" alt="UI/UX Design Preview" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?w=800&auto=format&fit=crop';">
                         </div>
                     </div>
-                    <div class="p-3.5 glass rounded-xl border border-white/5">
-                        <h3 class="text-sm font-bold text-white">Mobile App Interface Design</h3>
-                        <p class="text-[11px] text-gray-400 mt-0.5">Figma high-fidelity interactive prototype focused on user onboarding.</p>
+                    <div class="p-4 glass rounded-xl dark:border-white/5 border-black/5">
+                        <h3 class="text-sm font-bold dark:text-white text-slate-900">Mobile App Interface Design</h3>
+                        <p class="text-xs dark:text-gray-400 text-slate-600 mt-0.5">Figma high-fidelity interactive prototype focused on user onboarding.</p>
                     </div>
                 </div>
 
                 <!-- UI/UX Window 2 -->
                 <div class="w-[85vw] sm:w-[460px] lg:w-[500px] snap-start shrink-0 space-y-3">
-                    <div class="glass rounded-2xl border border-white/10 overflow-hidden shadow-xl group hover:border-white/30 transition">
-                        <div class="bg-[#18181b] px-3.5 py-2.5 flex items-center justify-between border-b border-white/10">
+                    <div class="glass rounded-2xl dark:border-white/10 border-black/10 overflow-hidden shadow-xl group hover:border-[#B0E454]/50 transition duration-300">
+                        <div class="bg-slate-950 dark:bg-[#18181b] px-3.5 py-2.5 flex items-center justify-between border-b dark:border-white/10 border-black/10">
                             <div class="flex items-center gap-2">
                                 <span class="w-2.5 h-2.5 rounded-full bg-red-500/80 inline-block"></span>
                                 <span class="w-2.5 h-2.5 rounded-full bg-yellow-500/80 inline-block"></span>
@@ -290,9 +350,9 @@
                             <img src="/ui-project-2.jpg" alt="Web Dashboard Interface Design" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&auto=format&fit=crop';">
                         </div>
                     </div>
-                    <div class="p-3.5 glass rounded-xl border border-white/5">
-                        <h3 class="text-sm font-bold text-white">SaaS Web Application Layout</h3>
-                        <p class="text-[11px] text-gray-400 mt-0.5">Clean dark-mode desktop dashboard created for real-time tracking.</p>
+                    <div class="p-4 glass rounded-xl dark:border-white/5 border-black/5">
+                        <h3 class="text-sm font-bold dark:text-white text-slate-900">SaaS Web Application Layout</h3>
+                        <p class="text-xs dark:text-gray-400 text-slate-600 mt-0.5">Clean dark-mode desktop dashboard created for real-time tracking.</p>
                     </div>
                 </div>
 
@@ -302,16 +362,16 @@
     </main>
 
     <!-- Footer -->
-    <footer class="py-6 px-6 border-t border-white/5">
+    <footer class="py-8 px-6 border-t dark:border-white/5 border-black/5 relative z-10">
         <div class="max-w-6xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4 text-xs">
-            <p class="text-gray-500 text-[11px]">© 2026 Reshad Sheikh. All rights reserved.</p>
+            <p class="dark:text-gray-500 text-slate-500 text-xs">© 2026 Reshad Sheikh. All rights reserved.</p>
             
-            <div class="flex items-center gap-4">
-                <a href="/#home" class="text-gray-400 hover:text-white uppercase tracking-widest text-[10px] font-medium transition-colors">Home</a>
+            <div class="flex items-center gap-5">
+                <a href="/#home" class="dark:text-gray-400 text-slate-600 hover:text-[#B0E454] uppercase tracking-widest text-xs font-semibold transition-colors">Home</a>
                 
-                <a href="/#contact" class="flex items-center gap-2 text-gray-300 bg-white/5 px-3.5 py-1.5 rounded-full border border-white/10 hover:bg-white/10 transition">
+                <a href="/#contact" class="flex items-center gap-2 dark:text-gray-300 text-slate-700 bg-[#B0E454]/15 px-4 py-1.5 rounded-full border border-[#B0E454]/30 hover:bg-[#B0E454]/25 transition">
                     <span class="w-2 h-2 rounded-full status-dot"></span>
-                    <span class="text-[11px] font-medium tracking-wide">Available for Projects</span>
+                    <span class="text-xs font-bold tracking-wide text-[#B0E454] dark:text-[#B0E454]">Available for Projects</span>
                 </a>
             </div>
         </div>
@@ -319,6 +379,35 @@
 
     <script>
         lucide.createIcons();
+
+        // Dark / Light Theme Controller Logic
+        const htmlEl = document.documentElement;
+        const themeBtnDesktop = document.getElementById('theme-toggle');
+        const themeBtnMobile = document.getElementById('mobile-theme-toggle');
+
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) {
+            if (savedTheme === 'light') {
+                htmlEl.classList.remove('dark');
+            } else {
+                htmlEl.classList.add('dark');
+            }
+        } else {
+            htmlEl.classList.add('dark');
+        }
+
+        function toggleTheme() {
+            if (htmlEl.classList.contains('dark')) {
+                htmlEl.classList.remove('dark');
+                localStorage.setItem('theme', 'light');
+            } else {
+                htmlEl.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+            }
+        }
+
+        if (themeBtnDesktop) themeBtnDesktop.addEventListener('click', toggleTheme);
+        if (themeBtnMobile) themeBtnMobile.addEventListener('click', toggleTheme);
 
         // Mobile Menu Logic
         const menuBtn = document.getElementById('menu-btn');
@@ -344,11 +433,11 @@
                 iconClose.classList.add('hidden');
                 iconClose.classList.remove('block');
                 iconHamburger.classList.remove('hidden');
-                iconHamburger.classList.add('block');
+                iconHamburger.classList.block;
             }
         }
 
-        menuBtn.addEventListener('click', toggleMenu);
+        if (menuBtn) menuBtn.addEventListener('click', toggleMenu);
 
         mobileLinks.forEach(link => {
             link.addEventListener('click', () => {
@@ -356,30 +445,38 @@
             });
         });
 
-        // Smart Hide/Show Navbar on Scroll
-        let lastScrollTop = 0;
+        // Hide/Show Navbar on Scroll
         const navbar = document.getElementById('navbar');
-        const scrollDelta = 10;
+        let lastScrollY = window.scrollY;
 
         window.addEventListener('scroll', () => {
-            let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-            
-            if (Math.abs(lastScrollTop - scrollTop) <= scrollDelta) return;
+            if (!navbar) return;
+            const currentScrollY = window.scrollY;
 
-            if (scrollTop > lastScrollTop && scrollTop > 80) {
-                navbar.classList.add('nav-hidden');
+            if (typeof isOpen !== 'undefined' && isOpen) return;
+
+            if (currentScrollY > 50) {
+                if (currentScrollY > lastScrollY) {
+                    navbar.classList.remove('translate-y-0');
+                    navbar.classList.add('-translate-y-full');
+                } else {
+                    navbar.classList.remove('-translate-y-full');
+                    navbar.classList.add('translate-y-0');
+                }
             } else {
-                navbar.classList.remove('nav-hidden');
+                navbar.classList.remove('-translate-y-full');
+                navbar.classList.add('translate-y-0');
             }
-            lastScrollTop = scrollTop;
+
+            lastScrollY = currentScrollY;
         });
 
-        // Particle Background Generation Script
+        // Particle Background Generation
         (function generateParticles() {
             const container = document.getElementById('particle-bg');
             if (!container) return;
 
-            const particleCount = 65;
+            const particleCount = 55;
 
             for (let i = 0; i < particleCount; i++) {
                 const particle = document.createElement('div');
