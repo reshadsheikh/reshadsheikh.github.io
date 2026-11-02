@@ -178,9 +178,8 @@
             <img src="reshadbg.png" alt="Reshad Sheikh" class="w-[700%] scale-150 sm:w-[200%] md:w-[500%] md:scale-100 h-auto object-contain max-h-[200vh] sm:max-h-[80vh] md:max-h-[150vh] filter drop-shadow-[0_15px_30px_rgba(0,0,0,0.9)] opacity-95 translate-y-15 md:translate-y-[320px]">
         </div>
 
-        <!-- Foreground Gradient (Identical to back gradient, placed in front of image cutout but behind text) -->
-        <!-- Bottom-pinned gradient starting dark, fading to lime green, blending into background -->
-<div class="absolute bottom-0 left-0 w-full h-[350px] pointer-events-none z-10 bg-[radial-gradient(ellipse_100%_100%_at_50%_100%,#000000_0%,rgba(176,228,84,0.45)_50%,transparent_100%)]"></div>
+        <!-- Foreground Gradient -->
+        <div class="absolute bottom-0 left-0 w-full h-[350px] pointer-events-none z-10 bg-[radial-gradient(ellipse_100%_100%_at_50%_100%,#000000_0%,rgba(176,228,84,0.45)_50%,transparent_100%)]"></div>
 
         <!-- Content Overlay Layer -->
         <div class="relative z-20 max-w-5xl mx-auto px-4 sm:px-6 text-center flex flex-col items-center justify-between w-full flex-1 pt-4 sm:pt-6 pb-8 md:pb-12">
@@ -212,7 +211,7 @@
             </div>
         </div>
 
-        <!-- The Divider Line placed directly at the bottom transition section -->
+        <!-- The Divider Line -->
         <div class="w-full relative z-30">
             <div class="hero-divider-line w-full"></div>
         </div>
@@ -220,33 +219,22 @@
 
     <!-- About Section -->
     <section id="about" class="py-24 px-6 bg-[#0c0c0c] relative z-10">
-        <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 items-center">
-            <div class="relative group">
-                <div class="aspect-square bg-gradient-to-br from-[#1a2e05] to-gray-900 rounded-2xl overflow-hidden border border-white/10 flex items-center justify-center">
-                    <img src="/profile.jpg" alt="Reshad Sheikh" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-3xl font-bold mb-6">"Turning good into great ones."</h2>
+            <p class="text-gray-400 text-lg leading-relaxed mb-6">
+                I am more than just a designer. My approach merges <strong>Digital Sales</strong>, <strong>In-depth Research</strong>, and <strong>UI/UX Strategy</strong> to create results that aren't just pretty, but functional.
+            </p>
+            <p class="text-gray-400 text-lg leading-relaxed mb-8">
+                Whether it's managing a community for <strong>Star World Baily Star</strong> or crafting high-fidelity prototypes in Figma, my goal is always precision.
+            </p>
+            <div class="grid grid-cols-2 gap-8 border-t border-white/10 pt-8 max-w-lg">
+                <div>
+                    <p class="text-2xl font-bold text-[#B0E454]">4.22</p>
+                    <p class="text-xs text-gray-500 uppercase tracking-widest">SSC Science GPA</p>
                 </div>
-                <div class="absolute -bottom-6 -right-6 glass p-6 rounded-xl hidden md:block">
-                    <p class="text-xs uppercase tracking-widest text-[#B0E454] mb-1">Located in</p>
-                    <p class="font-bold text-sm">Dhaka, Bangladesh</p>
-                </div>
-            </div>
-            <div>
-                <h2 class="text-3xl font-bold mb-6">"Turning good into great ones."</h2>
-                <p class="text-gray-400 text-lg leading-relaxed mb-6">
-                    I am more than just a designer. My approach merges <strong>Digital Sales</strong>, <strong>In-depth Research</strong>, and <strong>UI/UX Strategy</strong> to create results that aren't just pretty, but functional.
-                </p>
-                <p class="text-gray-400 text-lg leading-relaxed mb-8">
-                    Whether it's managing a community for <strong>Star World Baily Star</strong> or crafting high-fidelity prototypes in Figma, my goal is always precision.
-                </p>
-                <div class="grid grid-cols-2 gap-8 border-t border-white/10 pt-8">
-                    <div>
-                        <p class="text-2xl font-bold text-[#B0E454]">4.22</p>
-                        <p class="text-xs text-gray-500 uppercase tracking-widest">SSC Science GPA</p>
-                    </div>
-                    <div>
-                        <p class="text-2xl font-bold text-[#B0E454]">Fluent</p>
-                        <p class="text-xs text-gray-500 uppercase tracking-widest">English & Bangla</p>
-                    </div>
+                <div>
+                    <p class="text-2xl font-bold text-[#B0E454]">Fluent</p>
+                    <p class="text-xs text-gray-500 uppercase tracking-widest">English & Bangla</p>
                 </div>
             </div>
         </div>
@@ -424,7 +412,6 @@
                 iconClose.classList.add('hidden');
                 iconClose.classList.remove('block');
                 iconHamburger.classList.remove('hidden');
-                iconHamburger.classList.start;
                 iconHamburger.classList.add('block');
             }
         }
