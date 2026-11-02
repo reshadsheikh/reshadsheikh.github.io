@@ -5,16 +5,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reshad Sheikh | UI/UX Designer & Community Manager</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=Montserrat:wght@800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        limeAccent: '#B0E454',
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=Montserrat:wght@800&family=Playfair+Display:ital,wght@1,400;1,600&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
             scroll-behavior: smooth;
+            background-color: #0a0a0a;
         }
         .hero-title {
             font-family: 'Montserrat', sans-serif;
             line-height: 1.1;
+        }
+        .hero-serif {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-weight: 400;
         }
         .glass {
             background: rgba(255, 255, 255, 0.03);
@@ -25,31 +42,26 @@
             background: rgba(10, 10, 10, 0.95);
             backdrop-filter: blur(16px);
         }
-        .gradient-text {
-            background: linear-gradient(90deg, #ffffff, #a1a1a1);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
         .skill-card:hover {
             transform: translateY(-5px);
-            border-color: rgba(255, 255, 255, 0.4);
+            border-color: rgba(176, 228, 84, 0.4);
         }
         
-        @keyframes pulse-green {
-            0% { background-color: #10b981; opacity: 1; box-shadow: 0 0 0 0px rgba(16, 185, 129, 0.7); }
-            50% { background-color: #000000; opacity: 0.5; box-shadow: 0 0 0 4px rgba(16, 185, 129, 0); }
-            100% { background-color: #10b981; opacity: 1; box-shadow: 0 0 0 0px rgba(16, 185, 129, 0.7); }
+        @keyframes pulse-lime {
+            0% { background-color: #B0E454; opacity: 1; box-shadow: 0 0 0 0px rgba(176, 228, 84, 0.7); }
+            50% { background-color: #000000; opacity: 0.5; box-shadow: 0 0 0 4px rgba(176, 228, 84, 0); }
+            100% { background-color: #B0E454; opacity: 1; box-shadow: 0 0 0 0px rgba(176, 228, 84, 0.7); }
         }
         .status-dot {
-            animation: pulse-green 2s infinite ease-in-out;
+            animation: pulse-lime 2s infinite ease-in-out;
         }
 
-        /* Particle Background Styling & Animation */
+        /* Animated Floating Background Particles */
         .particle-bg {
             position: fixed;
             inset: 0;
             pointer-events: none;
-            z-index: -1;
+            z-index: 1;
             overflow: hidden;
         }
 
@@ -86,28 +98,47 @@
                 opacity: 0.2;
             }
         }
+
+        /* Hero Wrapper with Lime Green Gradient Originating Exactly from the Bottom Divider Line */
+        .hero-section-wrapper {
+            position: relative;
+            background: radial-gradient(ellipse 120% 75% at 50% 100%, rgba(176, 228, 84, 0.35) 0%, rgba(30, 45, 10, 0.85) 55%, #071203 100%);
+        }
+
+        /* Ambient Glow Originating from Divider Line */
+        .green-glow-spot {
+            background: radial-gradient(ellipse at 50% 100%, rgba(176, 228, 84, 0.5) 0%, rgba(25, 40, 10, 0.3) 60%, transparent 90%);
+            filter: blur(50px);
+        }
+
+        /* Glowing Horizon Divider Line directly below Hero Text & Cutout */
+        .hero-divider-line {
+            height: 1px;
+            background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.08) 20%, rgba(176, 228, 84, 0.6) 50%, rgba(255, 255, 255, 0.08) 80%, transparent 100%);
+            box-shadow: 0 0 12px rgba(176, 228, 84, 0.6);
+        }
     </style>
 </head>
-<body class="bg-[#0a0a0a] text-white selection:bg-white selection:text-black">
+<body class="bg-[#0a0a0a] text-white selection:bg-[#B0E454] selection:text-black">
 
-    <!-- Dynamic Animated Particle Background Container -->
+    <!-- Global Floating Particles Background (z-1) -->
     <div id="particle-bg" class="particle-bg"></div>
 
+    <!-- Main Navigation Bar -->
     <nav id="navbar" class="fixed top-0 w-full z-50 glass border-b border-white/5 py-4 transition-transform duration-300">
         <div class="max-w-6xl mx-auto px-6 flex justify-between items-center">
-            <!-- Main Logo pointing to full GitHub site -->
-            <a href="https://reshadsheikh.github.io/" class="text-xl font-bold tracking-tighter uppercase">Reshad<span class="text-gray-500">.</span></a>
+            <a href="https://reshadsheikh.github.io/" class="text-xl font-bold tracking-tighter uppercase">Reshad<span class="text-[#B0E454]">.</span></a>
             
             <!-- Desktop Navigation -->
             <div class="hidden md:flex items-center gap-8">
                 <div class="flex gap-8 text-sm font-medium tracking-wide uppercase">
-                    <a href="#home" class="hover:text-gray-400 transition-colors">Home</a>
-                    <a href="#about" class="hover:text-gray-400 transition-colors">About</a>
-                    <a href="/portfolio/" class="hover:text-gray-400 transition-colors">Portfolio</a>
-                    <a href="#skills" class="hover:text-gray-400 transition-colors">Skills</a>
-                    <a href="#experience" class="hover:text-gray-400 transition-colors">Experience</a>
+                    <a href="#home" class="hover:text-[#B0E454] transition-colors">Home</a>
+                    <a href="#about" class="hover:text-[#B0E454] transition-colors">About</a>
+                    <a href="/portfolio/" class="hover:text-[#B0E454] transition-colors">Portfolio</a>
+                    <a href="#skills" class="hover:text-[#B0E454] transition-colors">Skills</a>
+                    <a href="#experience" class="hover:text-[#B0E454] transition-colors">Experience</a>
                 </div>
-                <a href="#contact" class="bg-white text-black px-6 py-2.5 rounded-full text-sm font-bold hover:bg-gray-200 transition-all duration-300">
+                <a href="#contact" class="bg-white text-black px-6 py-2.5 rounded-full text-sm font-bold hover:bg-[#B0E454] transition-all duration-300">
                     Let's Talk
                 </a>
             </div>
@@ -123,46 +154,79 @@
     <!-- Mobile Navigation Drawer Overlay -->
     <div id="mobile-menu" class="fixed inset-0 z-40 mobile-glass border-b border-white/10 flex flex-col justify-between p-8 pt-28 transition-all duration-300 opacity-0 pointer-events-none -translate-y-4 md:hidden">
         <div class="flex flex-col gap-6 text-xl font-bold uppercase tracking-wider">
-            <a href="#home" class="mobile-link hover:text-gray-400 transition-colors py-2 border-b border-white/5">Home</a>
-            <a href="#about" class="mobile-link hover:text-gray-400 transition-colors py-2 border-b border-white/5">About</a>
-            <a href="/portfolio/" class="mobile-link hover:text-gray-400 transition-colors py-2 border-b border-white/5">Portfolio</a>
-            <a href="#skills" class="mobile-link hover:text-gray-400 transition-colors py-2 border-b border-white/5">Skills</a>
-            <a href="#experience" class="mobile-link hover:text-gray-400 transition-colors py-2 border-b border-white/5">Experience</a>
+            <a href="#home" class="mobile-link hover:text-[#B0E454] transition-colors py-2 border-b border-white/5">Home</a>
+            <a href="#about" class="mobile-link hover:text-[#B0E454] transition-colors py-2 border-b border-white/5">About</a>
+            <a href="/portfolio/" class="mobile-link hover:text-[#B0E454] transition-colors py-2 border-b border-white/5">Portfolio</a>
+            <a href="#skills" class="mobile-link hover:text-[#B0E454] transition-colors py-2 border-b border-white/5">Skills</a>
+            <a href="#experience" class="mobile-link hover:text-[#B0E454] transition-colors py-2 border-b border-white/5">Experience</a>
         </div>
         <div class="pt-6">
-            <a href="#contact" class="mobile-link w-full block text-center bg-white text-black py-4 rounded-full text-base font-bold hover:bg-gray-200 transition">
+            <a href="#contact" class="mobile-link w-full block text-center bg-white text-black py-4 rounded-full text-base font-bold hover:bg-[#B0E454] transition">
                 Let's Talk
             </a>
         </div>
     </div>
 
-    <section id="home" class="min-h-screen flex flex-col justify-center items-center px-6 pt-20">
-        <div class="max-w-4xl text-center">
-            <span class="inline-flex items-center gap-2 py-1 px-3 rounded-full border border-white/10 text-xs tracking-widest uppercase mb-6 fade-in">
-                <span class="w-2 h-2 rounded-full status-dot"></span>
-                Available for new projects
-            </span>
-            <h1 class="hero-title text-5xl md:text-8xl gradient-text mb-8 text-balance">
-                DESIGNING <br> DIGITAL EXPERIENCES.
-            </h1>
-            <p class="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed mb-10">
-                <strong>RESHAD SHEIKH</strong> — UI/UX Design & Community Strategist focused on precision, research, and building trust.
-            </p>
-            <div class="flex flex-col md:flex-row gap-4 justify-center">
-                <a href="#skills" class="bg-white text-black px-8 py-4 rounded-full font-bold hover:scale-105 transition duration-300">View My Expertise</a>
-                <a href="#experience" class="border border-white/20 px-8 py-4 rounded-full font-bold hover:bg-white/5 transition duration-300">Work History</a>
+    <!-- Hero Section Container -->
+    <section id="home" class="hero-section-wrapper min-h-screen relative flex flex-col justify-between items-center pt-16 sm:pt-20 md:pt-24 overflow-hidden">
+        
+        <!-- Lime Green Ambient Soft Light Glow radiating upwards from the bottom divider line -->
+        <div class="green-glow-spot absolute inset-0 w-full h-full pointer-events-none z-0"></div>
+
+        <!-- Center Image Cutout anchored at the bottom - Maximized for Mobile View -->
+        <div class="absolute inset-x-0 bottom-0 z-0 w-full max-w-lg sm:max-w-xl md:max-w-3xl lg:max-w-4xl mx-auto flex justify-center items-end pointer-events-none">
+            <img src="reshadbg.png" alt="Reshad Sheikh" class="w-[700%] scale-150 sm:w-[200%] md:w-[500%] md:scale-100 h-auto object-contain max-h-[200vh] sm:max-h-[80vh] md:max-h-[150vh] filter drop-shadow-[0_15px_30px_rgba(0,0,0,0.9)] opacity-95 translate-y-15 md:translate-y-[320px]">
+        </div>
+
+        <!-- Foreground Gradient (Identical to back gradient, placed in front of image cutout but behind text) -->
+        <!-- Bottom-pinned gradient starting dark, fading to lime green, blending into background -->
+<div class="absolute bottom-0 left-0 w-full h-[350px] pointer-events-none z-10 bg-[radial-gradient(ellipse_100%_100%_at_50%_100%,#000000_0%,rgba(176,228,84,0.45)_50%,transparent_100%)]"></div>
+
+        <!-- Content Overlay Layer -->
+        <div class="relative z-20 max-w-5xl mx-auto px-4 sm:px-6 text-center flex flex-col items-center justify-between w-full flex-1 pt-4 sm:pt-6 pb-8 md:pb-12">
+            
+            <div class="mt-2 sm:mt-4">
+                <span class="inline-flex items-center gap-2 py-1.5 px-4 rounded-full border border-[#B0E454]/40 bg-black/85 backdrop-blur-md text-[10px] sm:text-xs tracking-widest uppercase mb-2 sm:mb-4 shadow-xl">
+                    <span class="w-2 h-2 rounded-full status-dot"></span>
+                    Available for new projects
+                </span>
             </div>
+
+            <div class="flex flex-col items-center w-full mt-auto">
+                <h1 class="hero-title text-3xl sm:text-5xl md:text-7xl font-extrabold tracking-tight text-white mb-3 sm:mb-4 drop-shadow-[0_10px_20px_rgba(0,0,0,0.95)] max-w-4xl">
+                    DESIGNING <span class="hero-serif text-[#B0E454] font-normal border-b-2 border-[#B0E454]/40 pb-1">digital</span> EXPERIENCES.
+                </h1>
+
+                <p class="text-gray-200 text-xs sm:text-sm md:text-base max-w-xl mx-auto leading-relaxed mb-5 sm:mb-6 drop-shadow-[0_4px_12px_rgba(0,0,0,0.95)] bg-black/75 px-5 py-2.5 rounded-2xl md:rounded-full backdrop-blur-md border border-white/10">
+                    <strong class="text-white">RESHAD SHEIKH</strong> — UI/UX Design & Community Strategist focused on precision, research, and building trust.
+                </p>
+
+                <div class="flex flex-row gap-2.5 sm:gap-4 justify-center w-full max-w-md px-2">
+                    <a href="/portfolio/" class="flex-1 bg-[#B0E454] text-black py-2.5 sm:py-3 rounded-full font-bold hover:bg-white transition duration-300 shadow-xl text-center text-xs sm:text-sm md:text-base whitespace-nowrap">
+                        Portfolio
+                    </a>
+                    <a href="#skills" class="flex-1 bg-black/75 border border-white/20 backdrop-blur-md py-2.5 sm:py-3 rounded-full font-bold hover:bg-white/10 transition duration-300 text-center text-xs sm:text-sm md:text-base whitespace-nowrap">
+                        My Expertise
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- The Divider Line placed directly at the bottom transition section -->
+        <div class="w-full relative z-30">
+            <div class="hero-divider-line w-full"></div>
         </div>
     </section>
 
-    <section id="about" class="py-24 px-6 bg-[#0f0f0f]">
+    <!-- About Section -->
+    <section id="about" class="py-24 px-6 bg-[#0c0c0c] relative z-10">
         <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 items-center">
             <div class="relative group">
-                <div class="aspect-square bg-gradient-to-br from-gray-700 to-gray-900 rounded-2xl overflow-hidden border border-white/10 flex items-center justify-center">
+                <div class="aspect-square bg-gradient-to-br from-[#1a2e05] to-gray-900 rounded-2xl overflow-hidden border border-white/10 flex items-center justify-center">
                     <img src="/profile.jpg" alt="Reshad Sheikh" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
                 </div>
                 <div class="absolute -bottom-6 -right-6 glass p-6 rounded-xl hidden md:block">
-                    <p class="text-xs uppercase tracking-widest text-gray-400 mb-1">Located in</p>
+                    <p class="text-xs uppercase tracking-widest text-[#B0E454] mb-1">Located in</p>
                     <p class="font-bold text-sm">Dhaka, Bangladesh</p>
                 </div>
             </div>
@@ -176,11 +240,11 @@
                 </p>
                 <div class="grid grid-cols-2 gap-8 border-t border-white/10 pt-8">
                     <div>
-                        <p class="text-2xl font-bold">4.22</p>
+                        <p class="text-2xl font-bold text-[#B0E454]">4.22</p>
                         <p class="text-xs text-gray-500 uppercase tracking-widest">SSC Science GPA</p>
                     </div>
                     <div>
-                        <p class="text-2xl font-bold">Fluent</p>
+                        <p class="text-2xl font-bold text-[#B0E454]">Fluent</p>
                         <p class="text-xs text-gray-500 uppercase tracking-widest">English & Bangla</p>
                     </div>
                 </div>
@@ -188,34 +252,35 @@
         </div>
     </section>
 
-    <section id="skills" class="py-24 px-6">
+    <!-- Skills Section -->
+    <section id="skills" class="py-24 px-6 relative z-10">
         <div class="max-w-6xl mx-auto">
             <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-4">
                 <div>
                     <h2 class="text-4xl font-bold mb-2">Expertise</h2>
                     <p class="text-gray-500">Combining technical tools with interpersonal intelligence.</p>
                 </div>
-                <div class="text-sm font-medium border-b border-white/20 pb-1">Professional Skillset</div>
+                <div class="text-sm font-medium border-b border-[#B0E454]/50 pb-1 text-[#B0E454]">Professional Skillset</div>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div class="skill-card glass p-8 rounded-2xl border border-white/5 transition duration-300">
-                    <div class="w-12 h-12 bg-white/5 rounded-lg flex items-center justify-center mb-6">
-                        <i data-lucide="layout" class="text-white"></i>
+                    <div class="w-12 h-12 bg-[#B0E454]/10 rounded-lg flex items-center justify-center mb-6">
+                        <i data-lucide="layout" class="text-[#B0E454]"></i>
                     </div>
                     <h3 class="text-xl font-bold mb-3">UI/UX Design</h3>
                     <p class="text-gray-400 text-sm">Expertise in Figma crafting intuitive interfaces and user-centered prototypes.</p>
                 </div>
                 <div class="skill-card glass p-8 rounded-2xl border border-white/5 transition duration-300">
-                    <div class="w-12 h-12 bg-white/5 rounded-lg flex items-center justify-center mb-6">
-                        <i data-lucide="search" class="text-white"></i>
+                    <div class="w-12 h-12 bg-[#B0E454]/10 rounded-lg flex items-center justify-center mb-6">
+                        <i data-lucide="search" class="text-[#B0E454]"></i>
                     </div>
                     <h3 class="text-xl font-bold mb-3">Research & Analysis</h3>
                     <p class="text-gray-400 text-sm">Uncovering hidden details to drive strategic decisions and better UX.</p>
                 </div>
                 <div class="skill-card glass p-8 rounded-2xl border border-white/5 transition duration-300">
-                    <div class="w-12 h-12 bg-white/5 rounded-lg flex items-center justify-center mb-6">
-                        <i data-lucide="users" class="text-white"></i>
+                    <div class="w-12 h-12 bg-[#B0E454]/10 rounded-lg flex items-center justify-center mb-6">
+                        <i data-lucide="users" class="text-[#B0E454]"></i>
                     </div>
                     <h3 class="text-xl font-bold mb-3">Social Strategy</h3>
                     <p class="text-gray-400 text-sm">Managing accounts, messaging, and community engagement with kindness.</p>
@@ -224,15 +289,16 @@
         </div>
     </section>
 
-    <section id="experience" class="py-24 px-6 bg-[#0f0f0f]">
+    <!-- Experience Journey Section -->
+    <section id="experience" class="py-24 px-6 bg-[#0c0c0c] relative z-10">
         <div class="max-w-6xl mx-auto">
             <h2 class="text-4xl font-bold mb-16 text-center">Journey</h2>
             
             <div class="space-y-12">
-                <div class="flex flex-col md:flex-row gap-8 border-l-2 border-white/10 pl-8 relative">
-                    <div class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-white"></div>
+                <div class="flex flex-col md:flex-row gap-8 border-l-2 border-[#B0E454]/40 pl-8 relative">
+                    <div class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-[#B0E454] shadow-[0_0_10px_#B0E454]"></div>
                     <div class="md:w-1/3">
-                        <span class="text-gray-500 font-medium">2023 — 2024</span>
+                        <span class="text-[#B0E454] font-medium">2023 — 2024</span>
                         <h4 class="text-xl font-bold mt-2">Community Handler</h4>
                     </div>
                     <div class="md:w-2/3">
@@ -242,7 +308,7 @@
                 </div>
 
                 <div class="flex flex-col md:flex-row gap-8 border-l-2 border-white/10 pl-8 relative">
-                    <div class="absolute -left-[9px] top-0 w-4 h-4 rounded-full border-2 border-white bg-[#0a0a0a]"></div>
+                    <div class="absolute -left-[9px] top-0 w-4 h-4 rounded-full border-2 border-[#B0E454] bg-[#0a0a0a]"></div>
                     <div class="md:w-1/3">
                         <span class="text-gray-500 font-medium">2023 — 2025</span>
                         <h4 class="text-xl font-bold mt-2">HSC | Science</h4>
@@ -254,7 +320,7 @@
                 </div>
                 
                 <div class="flex flex-col md:flex-row gap-8 border-l-2 border-white/10 pl-8 relative">
-                    <div class="absolute -left-[9px] top-0 w-4 h-4 rounded-full border-2 border-white bg-[#0a0a0a]"></div>
+                    <div class="absolute -left-[9px] top-0 w-4 h-4 rounded-full border-2 border-[#B0E454] bg-[#0a0a0a]"></div>
                     <div class="md:w-1/3">
                         <span class="text-gray-500 font-medium">2021 — 2023</span>
                         <h4 class="text-xl font-bold mt-2">SSC | Science</h4>
@@ -268,15 +334,16 @@
         </div>
     </section>
 
-    <section id="contact" class="py-32 px-6">
-        <div class="max-w-4xl mx-auto glass p-12 md:p-20 rounded-[3rem] text-center border border-white/10">
+    <!-- Contact Section -->
+    <section id="contact" class="py-32 px-6 relative z-10">
+        <div class="max-w-4xl mx-auto glass p-12 md:p-20 rounded-[3rem] text-center border border-[#B0E454]/20 shadow-2xl">
             <h2 class="text-4xl md:text-6xl font-bold mb-8">Ready to start a project?</h2>
             <p class="text-gray-400 text-lg mb-12">I'm currently looking for new opportunities to design and manage. Let's create something meaningful together.</p>
             <div class="flex flex-col items-center gap-4">
-                <a href="mailto:reshadsheikh.pro@gmail.com" class="text-xl md:text-3xl font-bold hover:text-gray-400 transition break-all underline-offset-8 hover:underline">reshadsheikh.pro@gmail.com</a>
+                <a href="mailto:reshadsheikh.pro@gmail.com" class="text-xl md:text-3xl font-bold text-white hover:text-[#B0E454] transition break-all underline-offset-8 hover:underline">reshadsheikh.pro@gmail.com</a>
                 <a href="tel:+8801708170715" class="text-xl md:text-3xl font-bold text-gray-400 hover:text-white transition">+880 1708-170715</a>
                 <div class="flex gap-4 mt-6">
-                    <span class="bg-white/5 px-4 py-2 rounded-full text-xs uppercase tracking-widest text-gray-400 flex items-center gap-2">
+                    <span class="bg-[#B0E454]/10 border border-[#B0E454]/20 px-4 py-2 rounded-full text-xs uppercase tracking-widest text-[#B0E454] flex items-center gap-2">
                         <span class="w-1.5 h-1.5 rounded-full status-dot"></span>
                         Available
                     </span>
@@ -286,7 +353,8 @@
         </div>
     </section>
 
-    <footer class="py-10 px-6 border-t border-white/5">
+    <!-- Footer -->
+    <footer class="py-10 px-6 border-t border-white/5 relative z-10">
         <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
             <p class="text-gray-600 text-sm">© 2026 Reshad Sheikh. All rights reserved.</p>
             <div class="flex gap-6 text-gray-500 text-sm uppercase tracking-widest">
@@ -305,10 +373,11 @@
         let lastScrollY = window.scrollY;
 
         window.addEventListener('scroll', () => {
+            if (!navbar) return;
             const currentScrollY = window.scrollY;
 
             // Don't auto-hide when mobile drawer menu is currently open
-            if (isOpen) return;
+            if (typeof isOpen !== 'undefined' && isOpen) return;
 
             // Trigger scroll detection after 50px offset
             if (currentScrollY > 50) {
@@ -340,6 +409,7 @@
         let isOpen = false;
 
         function toggleMenu() {
+            if (!mobileMenu || !iconHamburger || !iconClose) return;
             isOpen = !isOpen;
             if (isOpen) {
                 mobileMenu.classList.remove('opacity-0', 'pointer-events-none', '-translate-y-4');
@@ -354,11 +424,14 @@
                 iconClose.classList.add('hidden');
                 iconClose.classList.remove('block');
                 iconHamburger.classList.remove('hidden');
+                iconHamburger.classList.start;
                 iconHamburger.classList.add('block');
             }
         }
 
-        menuBtn.addEventListener('click', toggleMenu);
+        if (menuBtn) {
+            menuBtn.addEventListener('click', toggleMenu);
+        }
 
         mobileLinks.forEach(link => {
             link.addEventListener('click', () => {
@@ -388,24 +461,21 @@
             const container = document.getElementById('particle-bg');
             if (!container) return;
 
-            const particleCount = 65; // Dynamic particle target count (50-80)
+            const particleCount = 65;
 
             for (let i = 0; i < particleCount; i++) {
                 const particle = document.createElement('div');
                 particle.classList.add('particle');
 
-                // Randomize particle sizes between 2px and 6px
                 const size = Math.random() * 4 + 2;
                 particle.style.width = `${size}px`;
                 particle.style.height = `${size}px`;
 
-                // Randomize initial screen positioning
                 particle.style.left = `${Math.random() * 100}vw`;
                 particle.style.top = `${Math.random() * 100}vh`;
 
-                // Randomize animation duration (speeds) and delays
-                const duration = Math.random() * 12 + 8; // 8s to 20s animation cycle
-                const delay = Math.random() * 10; // 0s to 10s start offset
+                const duration = Math.random() * 12 + 8;
+                const delay = Math.random() * 10;
                 particle.style.animationDuration = `${duration}s`;
                 particle.style.animationDelay = `${delay}s`;
 
