@@ -93,7 +93,7 @@
     <!-- Dynamic Animated Particle Background Container -->
     <div id="particle-bg" class="particle-bg"></div>
 
-    <nav class="fixed top-0 w-full z-50 glass border-b border-white/5 py-4">
+    <nav id="navbar" class="fixed top-0 w-full z-50 glass border-b border-white/5 py-4 transition-transform duration-300">
         <div class="max-w-6xl mx-auto px-6 flex justify-between items-center">
             <!-- Main Logo pointing to full GitHub site -->
             <a href="https://reshadsheikh.github.io/" class="text-xl font-bold tracking-tighter uppercase">Reshad<span class="text-gray-500">.</span></a>
@@ -299,6 +299,36 @@
 
     <script>
         lucide.createIcons();
+
+        // Navbar Hide on Scroll Down / Show on Scroll Up Logic
+        const navbar = document.getElementById('navbar');
+        let lastScrollY = window.scrollY;
+
+        window.addEventListener('scroll', () => {
+            const currentScrollY = window.scrollY;
+
+            // Don't auto-hide when mobile drawer menu is currently open
+            if (isOpen) return;
+
+            // Trigger scroll detection after 50px offset
+            if (currentScrollY > 50) {
+                if (currentScrollY > lastScrollY) {
+                    // Scrolling DOWN -> HIDE Header & Hamburger
+                    navbar.classList.remove('translate-y-0');
+                    navbar.classList.add('-translate-y-full');
+                } else {
+                    // Scrolling UP -> SHOW Header & Hamburger
+                    navbar.classList.remove('-translate-y-full');
+                    navbar.classList.add('translate-y-0');
+                }
+            } else {
+                // Keep visible at top of page
+                navbar.classList.remove('-translate-y-full');
+                navbar.classList.add('translate-y-0');
+            }
+
+            lastScrollY = currentScrollY;
+        });
 
         // Mobile Menu Logic
         const menuBtn = document.getElementById('menu-btn');
