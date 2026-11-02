@@ -43,9 +43,55 @@
         .status-dot {
             animation: pulse-green 2s infinite ease-in-out;
         }
+
+        /* Particle Background Styling & Animation */
+        .particle-bg {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.2) 60%, rgba(255, 255, 255, 0) 100%);
+            box-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+            animation-name: float-random;
+            animation-iteration-count: infinite;
+            animation-timing-function: ease-in-out;
+            will-change: transform, opacity;
+        }
+
+        @keyframes float-random {
+            0% {
+                transform: translate(0, 0) scale(1) rotate(0deg);
+                opacity: 0.2;
+            }
+            25% {
+                transform: translate(40px, -60px) scale(1.2) rotate(90deg);
+                opacity: 0.7;
+            }
+            50% {
+                transform: translate(-30px, -120px) scale(0.8) rotate(180deg);
+                opacity: 0.4;
+            }
+            75% {
+                transform: translate(50px, -180px) scale(1.1) rotate(270deg);
+                opacity: 0.8;
+            }
+            100% {
+                transform: translate(0, -240px) scale(1) rotate(360deg);
+                opacity: 0.2;
+            }
+        }
     </style>
 </head>
 <body class="bg-[#0a0a0a] text-white selection:bg-white selection:text-black">
+
+    <!-- Dynamic Animated Particle Background Container -->
+    <div id="particle-bg" class="particle-bg"></div>
 
     <nav class="fixed top-0 w-full z-50 glass border-b border-white/5 py-4">
         <div class="max-w-6xl mx-auto px-6 flex justify-between items-center">
@@ -306,6 +352,36 @@
                 observer.observe(section);
             });
         });
+
+        // Particle Background Generation Script
+        (function generateParticles() {
+            const container = document.getElementById('particle-bg');
+            if (!container) return;
+
+            const particleCount = 65; // Dynamic particle target count (50-80)
+
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+
+                // Randomize particle sizes between 2px and 6px
+                const size = Math.random() * 4 + 2;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+
+                // Randomize initial screen positioning
+                particle.style.left = `${Math.random() * 100}vw`;
+                particle.style.top = `${Math.random() * 100}vh`;
+
+                // Randomize animation duration (speeds) and delays
+                const duration = Math.random() * 12 + 8; // 8s to 20s animation cycle
+                const delay = Math.random() * 10; // 0s to 10s start offset
+                particle.style.animationDuration = `${duration}s`;
+                particle.style.animationDelay = `${delay}s`;
+
+                container.appendChild(particle);
+            }
+        })();
     </script>
 </body>
 </html>
