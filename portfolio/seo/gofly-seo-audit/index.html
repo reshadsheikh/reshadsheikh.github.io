@@ -1,15 +1,16 @@
+<!-- ... existing code ... -->
 <!DOCTYPE html>
-<html lang="en" class="h-full bg-slate-50 text-slate-800 transition-colors duration-200">
+<html lang="en" class="dark h-full">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SEO Audit Report - goFLY</title>
+    <title>SEO Audit Report - goFLY | Reshad Sheikh Portfolio</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Inter Font -->
+    <!-- Fonts: Inter & Montserrat -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@600;700;800;900&display=swap" rel="stylesheet">
     <!-- Lucide Icons CDN -->
     <script src="https://unpkg.com/lucide@latest"></script>
     <script>
@@ -19,20 +20,32 @@
                 extend: {
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
+                        heading: ['Montserrat', 'sans-serif'],
                     },
                     colors: {
+                        reshad: {
+                            blue: '#38BDF8',       /* Vibrant Sky Blue Accent */
+                            cobalt: '#0284C7',     /* Rich Electric Blue */
+                            dark: '#070D18',       /* Deep Rich Navy */
+                            surface: '#0F172A',    /* Dark Slate Blue Surface */
+                            card: '#1E293B',       /* Glass Card Fill Dark */
+                            border: '#334155',     /* Sleek Border Dark */
+                            lightBg: '#E0F2FE',    /* Soft Whitish Sky Blue Light Background */
+                            lightSurface: '#F0F9FF',/* Whitish Sky Blue Card Fill */
+                            lightBorder: '#BAE6FD' /* Crisp Sky Blue Border */
+                        },
                         emerald: {
                             50: '#ecfdf5',
                             100: '#d1fae5',
-                            500: '#10b981',
-                            700: '#047857',
+                            500: '#10b981',       /* Clear True Emerald Green */
+                            600: '#059669',
                             800: '#065f46',
                             950: '#064e3b',
                         },
                         amber: {
                             50: '#fffbeb',
                             100: '#fef3c7',
-                            500: '#f59e0b',
+                            500: '#f59e0b',       /* Bright Amber Orange */
                             700: '#b45309',
                             800: '#92400e',
                             950: '#451a03',
@@ -40,7 +53,7 @@
                         rose: {
                             50: '#fff1f2',
                             100: '#ffe4e6',
-                            500: '#f43f5e',
+                            500: '#f43f5e',       /* Crisp Vibrant Red */
                             700: '#be123c',
                             800: '#9f1239',
                             950: '#4c0519',
@@ -51,12 +64,66 @@
         }
     </script>
     <style>
-        /* Custom print stylesheet for sleek PDF export */
+        /* Base Themes */
+        body {
+            font-family: 'Inter', sans-serif;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        /* Dark Mode Colors */
+        .dark body {
+            background-color: #070D18;
+            color: #E2E8F0;
+        }
+
+        /* Whitish Sky Blue Light Mode Styling (Non-Pure White Aesthetic) */
+        html:not(.dark) body {
+            background-color: #E0F2FE;
+            color: #0F172A;
+        }
+
+        .heading-font {
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        /* Glassmorphism Cards */
+        .dark .glass-card {
+            background: rgba(15, 23, 42, 0.75);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        
+        html:not(.dark) .glass-card {
+            background: rgba(240, 249, 255, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(56, 189, 248, 0.25);
+            box-shadow: 0 4px 20px -2px rgba(186, 230, 253, 0.5);
+        }
+
+        .glass-card-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .dark .glass-card-hover:hover {
+            border-color: rgba(56, 189, 248, 0.4);
+            transform: translateY(-2px);
+        }
+        html:not(.dark) .glass-card-hover:hover {
+            border-color: rgba(2, 132, 199, 0.5);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px -5px rgba(56, 189, 248, 0.3);
+        }
+
+        .blue-text-glow {
+            text-shadow: 0 0 16px rgba(56, 189, 248, 0.45);
+        }
+
+        /* Custom print stylesheet */
         @media print {
             body {
                 background-color: #ffffff !important;
                 color: #0f172a !important;
-                font-size: 11px !important;
             }
             .no-print {
                 display: none !important;
@@ -68,89 +135,84 @@
                 box-shadow: none !important;
                 break-inside: avoid;
             }
-            .print-badge-good {
-                background-color: #d1fae5 !important;
-                color: #065f46 !important;
-                border: 1px solid #a7f3d0 !important;
-            }
-            .print-badge-improve {
-                background-color: #fef3c7 !important;
-                color: #92400e !important;
-                border: 1px solid #fde68a !important;
-            }
-            .print-badge-poor {
-                background-color: #ffe4e6 !important;
-                color: #9f1239 !important;
-                border: 1px solid #fecdd3 !important;
-            }
         }
         /* Custom scrollbar */
         ::-webkit-scrollbar {
             width: 8px;
             height: 8px;
         }
-        ::-webkit-scrollbar-track {
-            background: transparent;
+        .dark ::-webkit-scrollbar-track {
+            background: #070D18;
+        }
+        html:not(.dark) ::-webkit-scrollbar-track {
+            background: #E0F2FE;
         }
         ::-webkit-scrollbar-thumb {
-            background: #94a3b8;
+            background: #0284C7;
             border-radius: 4px;
         }
-        .dark ::-webkit-scrollbar-thumb {
-            background: #334155;
+        ::-webkit-scrollbar-thumb:hover {
+            background: #38BDF8;
         }
     </style>
 </head>
-<body class="font-sans antialiased selection:bg-cyan-500 selection:text-white min-h-screen flex flex-col justify-between transition-colors duration-200 bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-100">
+<body class="font-sans antialiased selection:bg-sky-400 selection:text-slate-900 min-h-screen flex flex-col justify-between">
 
     <!-- Top Navigation / Brand Banner -->
-    <header class="border-b border-slate-200 dark:border-slate-800 bg-white/90 dark:bg-slate-950/80 backdrop-blur-md sticky top-0 z-50 transition-colors duration-200 shadow-sm">
+    <header class="border-b border-sky-400/20 glass-card sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 flex flex-wrap items-center justify-between gap-4">
+            
+            <!-- Reshad Sheikh Brand Header Logo -->
             <div class="flex items-center space-x-3">
-                <div class="h-10 w-10 rounded-xl bg-gradient-to-tr from-cyan-600 to-blue-600 flex items-center justify-center text-white font-bold text-xl shadow-md shadow-cyan-500/20">
-                    gF
-                </div>
-                <div>
-                    <div class="flex items-center gap-2">
-                        <span class="font-black text-xl tracking-tight text-slate-900 dark:text-white">go<span class="text-cyan-600 dark:text-cyan-400">FLY</span></span>
-                        <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-semibold bg-cyan-100 text-cyan-800 border border-cyan-200 dark:bg-cyan-950 dark:text-cyan-300 dark:border-cyan-800">
-                            Client Audit Report
-                        </span>
+                <a href="https://reshadsheikh.github.io/" target="_blank" class="flex items-center space-x-3 group">
+                    <div class="h-10 w-10 rounded-xl bg-gradient-to-tr from-sky-500 to-blue-600 flex items-center justify-center text-white font-black text-xl shadow-lg shadow-sky-500/25 group-hover:scale-105 transition-transform">
+                        R
                     </div>
-                    <p class="text-xs text-slate-500 dark:text-slate-400 flex items-center gap-1">
-                        <i data-lucide="globe" class="w-3 h-3 text-slate-400"></i>
-                        <span>goflybd.com</span>
-                        <span class="text-slate-300 dark:text-slate-600">•</span>
-                        <span>02 Nov 2026</span>
-                    </p>
-                </div>
+                    <div>
+                        <div class="flex items-center gap-2">
+                            <span class="heading-font font-black text-lg tracking-wider dark:text-white text-slate-900">RESHAD <span class="text-sky-500 dark:text-sky-400">SHEIKH</span></span>
+                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold bg-sky-500/10 text-sky-600 dark:text-sky-400 border border-sky-500/30">
+                                SEO Audit Case Study
+                            </span>
+                        </div>
+                        <p class="text-xs text-slate-600 dark:text-slate-400 flex items-center gap-1 font-mono">
+                            <i data-lucide="globe" class="w-3 h-3 text-sky-500 dark:text-sky-400"></i>
+                            <span>goflybd.com</span>
+                            <span class="text-slate-400 dark:text-slate-600">•</span>
+                            <span>Client Audit Report</span>
+                        </p>
+                    </div>
+                </a>
             </div>
 
             <!-- Top Action Controls -->
             <div class="flex flex-wrap items-center gap-2 sm:gap-3 no-print">
-                <!-- Google Sheets Live Report Link Button -->
+                <!-- Theme Switcher Toggle -->
+                <button onclick="toggleTheme()" 
+                        id="theme-toggle-btn"
+                        title="Toggle Whitish Sky / Dark Theme"
+                        class="inline-flex items-center gap-2 px-3.5 py-2 text-xs font-semibold dark:text-slate-200 text-slate-800 glass-card hover:border-sky-400 rounded-xl transition-all shadow-sm">
+                    <i data-lucide="sun" id="theme-icon-sun" class="w-4 h-4 text-amber-500 hidden"></i>
+                    <i data-lucide="moon" id="theme-icon-moon" class="w-4 h-4 text-sky-500"></i>
+                    <span id="theme-text" class="font-bold">Light Mode</span>
+                </button>
+
                 <a href="https://docs.google.com/spreadsheets/d/1NgBtU8XyiS7eYyWJVDCE0K8Wzqnp4DFFaKMmWgkj5BY/edit?usp=sharing" 
                    target="_blank" 
                    rel="noopener noreferrer"
-                   class="inline-flex items-center gap-2 px-3.5 py-2 text-xs font-bold text-emerald-800 dark:text-emerald-300 bg-emerald-50 hover:bg-emerald-100 dark:bg-emerald-950/80 dark:hover:bg-emerald-900 border border-emerald-300 dark:border-emerald-700/70 rounded-lg transition-all shadow-sm">
-                    <i data-lucide="file-spreadsheet" class="w-4 h-4 text-emerald-600 dark:text-emerald-400"></i>
-                    <span>View Live Sheet Report</span>
-                    <i data-lucide="external-link" class="w-3 h-3 opacity-70"></i>
+                   class="inline-flex items-center gap-2 px-3.5 py-2 text-xs font-bold text-white bg-gradient-to-r from-sky-500 to-blue-600 hover:from-sky-400 hover:to-blue-500 rounded-xl transition-all shadow-lg shadow-sky-500/20">
+                    <i data-lucide="file-spreadsheet" class="w-4 h-4"></i>
+                    <span>Live Sheet Report</span>
+                    <i data-lucide="external-link" class="w-3 h-3 opacity-80"></i>
                 </a>
 
-                <!-- Theme Switcher Button -->
-                <button onclick="toggleTheme()" 
-                        id="theme-toggle-btn"
-                        title="Toggle Light/Dark Theme"
-                        class="inline-flex items-center gap-1.5 px-3 py-2 text-xs font-semibold text-slate-700 dark:text-slate-200 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 border border-slate-300 dark:border-slate-700 rounded-lg transition-all">
-                    <i data-lucide="sun" id="theme-icon-sun" class="w-4 h-4 text-amber-500 hidden"></i>
-                    <i data-lucide="moon" id="theme-icon-moon" class="w-4 h-4 text-cyan-600 dark:text-cyan-400"></i>
-                    <span id="theme-text">Dark Mode</span>
-                </button>
+                <a href="https://reshadsheikh.github.io/#contact" target="_blank" class="inline-flex items-center gap-2 px-3.5 py-2 text-xs font-semibold dark:text-white text-slate-800 glass-card hover:border-sky-400 rounded-xl transition-all">
+                    <i data-lucide="mail" class="w-4 h-4 text-sky-500 dark:text-sky-400"></i>
+                    <span>Contact Reshad</span>
+                </a>
 
-                <!-- Print / Save PDF Button -->
-                <button onclick="window.print()" class="inline-flex items-center gap-2 px-3.5 py-2 text-xs font-semibold text-slate-700 dark:text-slate-200 bg-white dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 border border-slate-300 dark:border-slate-700 rounded-lg transition-all shadow-sm">
-                    <i data-lucide="printer" class="w-4 h-4 text-cyan-600 dark:text-cyan-400"></i>
+                <button onclick="window.print()" class="inline-flex items-center gap-2 px-3.5 py-2 text-xs font-semibold dark:text-slate-300 text-slate-700 glass-card hover:border-sky-400 rounded-xl transition-all">
+                    <i data-lucide="printer" class="w-4 h-4 text-sky-500 dark:text-sky-400"></i>
                     <span class="hidden sm:inline">Print / PDF</span>
                 </button>
             </div>
@@ -161,85 +223,88 @@
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full space-y-8 flex-grow">
 
         <!-- Title & Subtitle Banner -->
-        <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-2 border-b border-slate-200 dark:border-slate-800">
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-4 border-b border-sky-400/20">
             <div>
-                <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight flex items-center gap-3">
-                    SEO AUDIT REPORT
-                    <span class="text-xs font-normal px-3 py-1 rounded-full bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-300 dark:border-slate-700">Executive Summary</span>
+                <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-sky-500/10 border border-sky-500/30 text-sky-600 dark:text-sky-400 text-xs font-semibold uppercase tracking-wider mb-2">
+                    <span class="w-2 h-2 rounded-full bg-sky-500 dark:bg-sky-400 animate-pulse"></span>
+                    <span>goFLY Technical & On-Page Audit</span>
+                </div>
+                <h1 class="heading-font text-3xl sm:text-4xl font-black dark:text-white text-slate-900 tracking-tight flex items-center gap-3">
+                    SEO PERFORMANCE <span class="text-transparent bg-clip-text bg-gradient-to-r from-sky-500 via-blue-600 to-cyan-500 dark:from-sky-400 dark:via-blue-400 dark:to-cyan-300 blue-text-glow">DASHBOARD</span>
                 </h1>
-                <p class="text-sm text-slate-600 dark:text-slate-400 mt-1">Website health snapshot and performance metrics for <strong class="text-slate-900 dark:text-slate-200 font-semibold">goflybd.com</strong></p>
+                <p class="text-sm dark:text-slate-400 text-slate-600 mt-1">Website health snapshot and performance metrics curated for <strong class="dark:text-white text-slate-900 font-semibold">goflybd.com</strong></p>
             </div>
-            <div class="flex items-center gap-2 text-xs text-slate-600 dark:text-slate-400 bg-white dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/60 px-3 py-2 rounded-lg shadow-sm">
+            <div class="flex items-center gap-2 text-xs dark:text-slate-300 text-slate-700 glass-card px-3.5 py-2 rounded-xl border border-sky-400/20 shadow-sm">
                 <i data-lucide="shield-check" class="w-4 h-4 text-emerald-600 dark:text-emerald-400"></i>
-                <span>Data Verified: <strong>(33/33 Items)</strong></span>
+                <span>Data Scope Verified: <strong class="text-sky-600 dark:text-sky-400 font-mono">33/33 Criteria</strong></span>
             </div>
         </div>
 
         <!-- Metric Summary Cards Grid -->
         <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             <!-- Total Checks Reviewed Card -->
-            <div class="print-card bg-white dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/70 rounded-xl p-5 shadow-sm dark:shadow-lg relative overflow-hidden group hover:border-slate-300 dark:hover:border-slate-600 transition-all">
+            <div class="print-card glass-card p-5 rounded-2xl relative overflow-hidden group glass-card-hover">
                 <div class="flex items-center justify-between">
-                    <span class="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Checks Reviewed</span>
-                    <div class="p-2 bg-slate-100 dark:bg-slate-700/50 rounded-lg text-cyan-600 dark:text-cyan-400">
+                    <span class="text-xs font-semibold uppercase tracking-wider dark:text-slate-400 text-slate-600 font-mono">Checks Reviewed</span>
+                    <div class="p-2 bg-sky-500/10 rounded-xl text-sky-600 dark:text-sky-400">
                         <i data-lucide="clipboard-list" class="w-5 h-5"></i>
                     </div>
                 </div>
                 <div class="mt-4 flex items-baseline justify-between">
-                    <span class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white">33</span>
-                    <span class="text-xs font-medium text-slate-500 dark:text-slate-400">100% Scope</span>
+                    <span class="heading-font text-3xl sm:text-4xl font-extrabold dark:text-white text-slate-900">33</span>
+                    <span class="text-xs font-medium dark:text-slate-400 text-slate-600">100% Audit Scope</span>
                 </div>
-                <p class="text-xs text-slate-500 dark:text-slate-400 mt-2">All audit criteria thoroughly analyzed</p>
+                <p class="text-xs dark:text-slate-500 text-slate-600 mt-2">All parameters evaluated</p>
             </div>
 
-            <!-- Good Status Card -->
-            <div class="print-card bg-white dark:bg-slate-800/50 border border-emerald-200 dark:border-emerald-900/50 rounded-xl p-5 shadow-sm dark:shadow-lg relative overflow-hidden group hover:border-emerald-400 dark:hover:border-emerald-700/70 transition-all">
+            <!-- Good Status Card (Emerald Green Fix) -->
+            <div class="print-card glass-card p-5 rounded-2xl border border-emerald-500/40 relative overflow-hidden group glass-card-hover dark:bg-emerald-950/20 bg-emerald-500/10">
                 <div class="flex items-center justify-between">
-                    <span class="text-xs font-semibold uppercase tracking-wider text-emerald-700 dark:text-emerald-400">Good Status</span>
-                    <div class="p-2 bg-emerald-100 dark:bg-emerald-950/60 border border-emerald-200 dark:border-emerald-800/60 rounded-lg text-emerald-600 dark:text-emerald-400">
+                    <span class="text-xs font-bold uppercase tracking-wider text-emerald-600 dark:text-emerald-400 font-mono">Good Status</span>
+                    <div class="p-2 bg-emerald-500/20 border border-emerald-500/40 rounded-xl text-emerald-600 dark:text-emerald-400">
                         <i data-lucide="check-circle-2" class="w-5 h-5"></i>
                     </div>
                 </div>
                 <div class="mt-4 flex items-baseline justify-between">
-                    <span class="text-3xl sm:text-4xl font-extrabold text-emerald-600 dark:text-emerald-400">19</span>
-                    <span class="text-xs font-bold text-emerald-800 dark:text-emerald-400 bg-emerald-100 dark:bg-emerald-950 px-2 py-0.5 rounded border border-emerald-300 dark:border-emerald-800">57.6% passing</span>
+                    <span class="heading-font text-3xl sm:text-4xl font-extrabold text-emerald-600 dark:text-emerald-400">19</span>
+                    <span class="text-xs font-bold text-emerald-700 dark:text-emerald-300 bg-emerald-100 dark:bg-emerald-950/90 px-2.5 py-1 rounded-lg border border-emerald-500/40 font-mono shadow-sm">57.6% passing</span>
                 </div>
-                <div class="mt-3 w-full bg-slate-100 dark:bg-slate-700/50 h-1.5 rounded-full overflow-hidden">
-                    <div class="bg-emerald-500 h-full rounded-full" style="width: 57.6%"></div>
+                <div class="mt-3 w-full bg-slate-300 dark:bg-slate-800 h-2 rounded-full overflow-hidden border border-emerald-500/20">
+                    <div class="bg-emerald-500 h-full rounded-full shadow-sm" style="width: 57.6%"></div>
                 </div>
             </div>
 
-            <!-- Needs Work Card -->
-            <div class="print-card bg-white dark:bg-slate-800/50 border border-amber-200 dark:border-amber-900/50 rounded-xl p-5 shadow-sm dark:shadow-lg relative overflow-hidden group hover:border-amber-400 dark:hover:border-amber-700/70 transition-all">
+            <!-- Needs Work Card (Amber Orange Fix) -->
+            <div class="print-card glass-card p-5 rounded-2xl border border-amber-500/40 relative overflow-hidden group glass-card-hover dark:bg-amber-950/20 bg-amber-500/10">
                 <div class="flex items-center justify-between">
-                    <span class="text-xs font-semibold uppercase tracking-wider text-amber-700 dark:text-amber-400">Needs Work</span>
-                    <div class="p-2 bg-amber-100 dark:bg-amber-950/60 border border-amber-200 dark:border-amber-800/60 rounded-lg text-amber-600 dark:text-amber-400">
+                    <span class="text-xs font-bold uppercase tracking-wider text-amber-600 dark:text-amber-400 font-mono">Needs Work</span>
+                    <div class="p-2 bg-amber-500/20 border border-amber-500/40 rounded-xl text-amber-600 dark:text-amber-400">
                         <i data-lucide="alert-triangle" class="w-5 h-5"></i>
                     </div>
                 </div>
                 <div class="mt-4 flex items-baseline justify-between">
-                    <span class="text-3xl sm:text-4xl font-extrabold text-amber-600 dark:text-amber-400">8</span>
-                    <span class="text-xs font-bold text-amber-800 dark:text-amber-400 bg-amber-100 dark:bg-amber-950 px-2 py-0.5 rounded border border-amber-300 dark:border-amber-800">24.2% to improve</span>
+                    <span class="heading-font text-3xl sm:text-4xl font-extrabold text-amber-600 dark:text-amber-400">8</span>
+                    <span class="text-xs font-bold text-amber-700 dark:text-amber-300 bg-amber-100 dark:bg-amber-950/90 px-2.5 py-1 rounded-lg border border-amber-500/40 font-mono shadow-sm">24.2% improve</span>
                 </div>
-                <div class="mt-3 w-full bg-slate-100 dark:bg-slate-700/50 h-1.5 rounded-full overflow-hidden">
-                    <div class="bg-amber-500 h-full rounded-full" style="width: 24.2%"></div>
+                <div class="mt-3 w-full bg-slate-300 dark:bg-slate-800 h-2 rounded-full overflow-hidden border border-amber-500/20">
+                    <div class="bg-amber-500 h-full rounded-full shadow-sm" style="width: 24.2%"></div>
                 </div>
             </div>
 
-            <!-- Poor Status Card -->
-            <div class="print-card bg-white dark:bg-slate-800/50 border border-rose-200 dark:border-rose-900/50 rounded-xl p-5 shadow-sm dark:shadow-lg relative overflow-hidden group hover:border-rose-400 dark:hover:border-rose-700/70 transition-all">
+            <!-- Poor Status Card (Rose Red Fix) -->
+            <div class="print-card glass-card p-5 rounded-2xl border border-rose-500/40 relative overflow-hidden group glass-card-hover dark:bg-rose-950/20 bg-rose-500/10">
                 <div class="flex items-center justify-between">
-                    <span class="text-xs font-semibold uppercase tracking-wider text-rose-700 dark:text-rose-400">Poor / Critical</span>
-                    <div class="p-2 bg-rose-100 dark:bg-rose-950/60 border border-rose-200 dark:border-rose-800/60 rounded-lg text-rose-600 dark:text-rose-400">
+                    <span class="text-xs font-bold uppercase tracking-wider text-rose-600 dark:text-rose-400 font-mono">Critical / Poor</span>
+                    <div class="p-2 bg-rose-500/20 border border-rose-500/40 rounded-xl text-rose-600 dark:text-rose-400">
                         <i data-lucide="x-circle" class="w-5 h-5"></i>
                     </div>
                 </div>
                 <div class="mt-4 flex items-baseline justify-between">
-                    <span class="text-3xl sm:text-4xl font-extrabold text-rose-600 dark:text-rose-400">6</span>
-                    <span class="text-xs font-bold text-rose-800 dark:text-rose-400 bg-rose-100 dark:bg-rose-950 px-2 py-0.5 rounded border border-rose-300 dark:border-rose-800">18.2% failing</span>
+                    <span class="heading-font text-3xl sm:text-4xl font-extrabold text-rose-600 dark:text-rose-400">6</span>
+                    <span class="text-xs font-bold text-rose-700 dark:text-rose-300 bg-rose-100 dark:bg-rose-950/90 px-2.5 py-1 rounded-lg border border-rose-500/40 font-mono shadow-sm">18.2% failing</span>
                 </div>
-                <div class="mt-3 w-full bg-slate-100 dark:bg-slate-700/50 h-1.5 rounded-full overflow-hidden">
-                    <div class="bg-rose-500 h-full rounded-full" style="width: 18.2%"></div>
+                <div class="mt-3 w-full bg-slate-300 dark:bg-slate-800 h-2 rounded-full overflow-hidden border border-rose-500/20">
+                    <div class="bg-rose-500 h-full rounded-full shadow-sm" style="width: 18.2%"></div>
                 </div>
             </div>
         </section>
@@ -248,151 +313,140 @@
         <section class="grid grid-cols-1 lg:grid-cols-12 gap-6">
             
             <!-- Audit Status Distribution Chart Card -->
-            <div class="print-card lg:col-span-4 bg-white dark:bg-slate-800/40 border border-slate-200 dark:border-slate-700/70 rounded-xl p-6 flex flex-col justify-between shadow-sm dark:shadow-lg">
+            <div class="print-card lg:col-span-4 glass-card rounded-3xl p-6 flex flex-col justify-between">
                 <div>
-                    <div class="flex items-center justify-between pb-3 border-b border-slate-200 dark:border-slate-700/60">
+                    <div class="flex items-center justify-between pb-3 border-b border-sky-400/20">
                         <div>
-                            <h2 class="text-base font-bold text-slate-900 dark:text-white uppercase tracking-wide">Audit Status</h2>
-                            <p class="text-xs text-slate-500 dark:text-slate-400">Distribution across all checks</p>
+                            <h2 class="heading-font text-base font-bold dark:text-white text-slate-900 uppercase tracking-wider">Audit Overview</h2>
+                            <p class="text-xs dark:text-slate-400 text-slate-600">Distribution across parameters</p>
                         </div>
-                        <span class="p-1.5 bg-slate-100 dark:bg-slate-800 rounded text-slate-500 dark:text-slate-400"><i data-lucide="pie-chart" class="w-4 h-4"></i></span>
+                        <span class="p-2 bg-sky-500/10 rounded-xl text-sky-600 dark:text-sky-400"><i data-lucide="pie-chart" class="w-4 h-4"></i></span>
                     </div>
 
-                    <!-- Donut Graphic Visual Component -->
+                    <!-- Donut Visual Component -->
                     <div class="my-6 flex items-center justify-center">
                         <div class="relative w-44 h-44 flex items-center justify-center">
                             <svg class="w-full h-full transform -rotate-90" viewBox="0 0 36 36">
-                                <!-- Background Circle Track -->
-                                <path class="text-slate-200 dark:text-slate-800" stroke-width="3.8" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                                <path class="dark:text-slate-800 text-sky-200" stroke-width="3.8" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
                                 
-                                <!-- Good Segment (57.6%) -->
                                 <path class="text-emerald-500 transition-all duration-700" stroke-dasharray="57.6, 100" stroke-width="3.8" stroke-linecap="round" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
                                 
-                                <!-- Needs Work Segment (24.2%) -->
                                 <path class="text-amber-500 transition-all duration-700" stroke-dasharray="24.2, 100" stroke-dashoffset="-57.6" stroke-width="3.8" stroke-linecap="round" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
 
-                                <!-- Poor Segment (18.2%) -->
                                 <path class="text-rose-500 transition-all duration-700" stroke-dasharray="18.2, 100" stroke-dashoffset="-81.8" stroke-width="3.8" stroke-linecap="round" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
                             </svg>
-                            <!-- Inner Stats Center -->
                             <div class="absolute inset-0 flex flex-col items-center justify-center text-center">
-                                <span class="text-3xl font-black text-slate-900 dark:text-white">33</span>
-                                <span class="text-[10px] uppercase font-bold tracking-widest text-slate-500 dark:text-slate-400">Checks</span>
+                                <span class="heading-font text-3xl font-black dark:text-white text-slate-900">33</span>
+                                <span class="text-[10px] uppercase font-bold tracking-widest text-sky-600 dark:text-sky-400 font-mono">Checks</span>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Chart Legend List -->
-                <div class="space-y-2.5 pt-2 border-t border-slate-200 dark:border-slate-700/60">
+                <div class="space-y-2.5 pt-3 border-t border-sky-400/20">
                     <div class="flex items-center justify-between text-xs">
                         <div class="flex items-center gap-2">
                             <span class="w-3 h-3 rounded-full bg-emerald-500"></span>
-                            <span class="text-slate-700 dark:text-slate-300 font-medium">Good</span>
+                            <span class="dark:text-slate-300 text-slate-700 font-medium">Good Passing</span>
                         </div>
-                        <span class="font-bold text-slate-900 dark:text-white">19 <span class="text-slate-500 dark:text-slate-400 font-normal"> (57.6%)</span></span>
+                        <span class="font-bold text-emerald-600 dark:text-emerald-400 font-mono">19 <span class="dark:text-slate-500 text-slate-500 font-normal">(57.6%)</span></span>
                     </div>
                     <div class="flex items-center justify-between text-xs">
                         <div class="flex items-center gap-2">
                             <span class="w-3 h-3 rounded-full bg-amber-500"></span>
-                            <span class="text-slate-700 dark:text-slate-300 font-medium">Needs Work</span>
+                            <span class="dark:text-slate-300 text-slate-700 font-medium">Needs Work</span>
                         </div>
-                        <span class="font-bold text-slate-900 dark:text-white">8 <span class="text-slate-500 dark:text-slate-400 font-normal"> (24.2%)</span></span>
+                        <span class="font-bold text-amber-600 dark:text-amber-400 font-mono">8 <span class="dark:text-slate-500 text-slate-500 font-normal">(24.2%)</span></span>
                     </div>
                     <div class="flex items-center justify-between text-xs">
                         <div class="flex items-center gap-2">
                             <span class="w-3 h-3 rounded-full bg-rose-500"></span>
-                            <span class="text-slate-700 dark:text-slate-300 font-medium">Poor</span>
+                            <span class="dark:text-slate-300 text-slate-700 font-medium">Critical Issues</span>
                         </div>
-                        <span class="font-bold text-slate-900 dark:text-white">6 <span class="text-slate-500 dark:text-slate-400 font-normal"> (18.2%)</span></span>
+                        <span class="font-bold text-rose-600 dark:text-rose-400 font-mono">6 <span class="dark:text-slate-500 text-slate-500 font-normal">(18.2%)</span></span>
                     </div>
                 </div>
             </div>
 
             <!-- Key Findings & Critical Highlights Grid -->
-            <div class="print-card lg:col-span-8 bg-white dark:bg-slate-800/40 border border-slate-200 dark:border-slate-700/70 rounded-xl p-6 shadow-sm dark:shadow-lg flex flex-col justify-between">
+            <div class="print-card lg:col-span-8 glass-card rounded-3xl p-6 flex flex-col justify-between">
                 <div>
-                    <div class="flex items-center justify-between pb-3 border-b border-slate-200 dark:border-slate-700/60">
+                    <div class="flex items-center justify-between pb-3 border-b border-sky-400/20">
                         <div>
-                            <h2 class="text-base font-bold text-slate-900 dark:text-white uppercase tracking-wide">Key Findings</h2>
-                            <p class="text-xs text-slate-500 dark:text-slate-400">Short, decision-ready highlights from the audit</p>
+                            <h2 class="heading-font text-base font-bold dark:text-white text-slate-900 uppercase tracking-wider">Key Audit Findings</h2>
+                            <p class="text-xs dark:text-slate-400 text-slate-600">High impact action items for ranking improvement</p>
                         </div>
-                        <span class="px-2.5 py-1 bg-cyan-100 dark:bg-cyan-950 text-cyan-800 dark:text-cyan-300 border border-cyan-300 dark:border-cyan-800 text-xs rounded-md font-medium">Priority Dashboard</span>
+                        <span class="px-2.5 py-1 bg-sky-500/10 text-sky-600 dark:text-sky-400 border border-sky-500/30 text-xs rounded-lg font-mono">Reshad Sheikh Recommendations</span>
                     </div>
 
                     <!-- Highlight Grid Items -->
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-5">
                         
-                        <!-- Backlink Profile Card -->
-                        <div class="p-4 bg-slate-50 dark:bg-slate-800/80 rounded-lg border-l-4 border-amber-500 border-t border-r border-b border-slate-200 dark:border-slate-700/80 shadow-sm flex flex-col justify-between">
+                        <div class="p-4 dark:bg-white/5 bg-sky-100/50 rounded-2xl border-l-4 border-amber-500 border-t border-r border-b dark:border-white/5 border-sky-200 flex flex-col justify-between">
                             <div class="flex justify-between items-start">
                                 <div>
-                                    <h3 class="text-xs font-bold text-amber-700 dark:text-amber-400 uppercase tracking-wider">Backlink Profile</h3>
-                                    <p class="text-sm font-semibold text-slate-900 dark:text-white mt-1">25K links • 481 domains</p>
+                                    <h3 class="text-xs font-bold text-amber-600 dark:text-amber-400 uppercase tracking-wider font-mono">Backlink Profile</h3>
+                                    <p class="text-sm font-semibold dark:text-white text-slate-900 mt-1">25K links • 481 domains</p>
                                 </div>
-                                <span class="text-[10px] font-bold px-2 py-0.5 bg-amber-100 text-amber-800 border border-amber-300 dark:bg-amber-950 dark:text-amber-300 dark:border-amber-800 rounded uppercase">Improve</span>
+                                <span class="text-[10px] font-bold px-2 py-0.5 bg-amber-100 dark:bg-amber-950/90 text-amber-700 dark:text-amber-300 border border-amber-500/40 rounded uppercase font-mono">Needs Work</span>
                             </div>
-                            <p class="text-xs text-slate-600 dark:text-slate-400 mt-2">High ratio (96% dofollow) requires diversity review.</p>
+                            <p class="text-xs dark:text-slate-400 text-slate-600 mt-2">High ratio (96% dofollow) requires diversity review.</p>
                         </div>
 
-                        <!-- Broken Links Card -->
-                        <div class="p-4 bg-slate-50 dark:bg-slate-800/80 rounded-lg border-l-4 border-rose-500 border-t border-r border-b border-slate-200 dark:border-slate-700/80 shadow-sm flex flex-col justify-between">
+                        <div class="p-4 dark:bg-white/5 bg-sky-100/50 rounded-2xl border-l-4 border-rose-500 border-t border-r border-b dark:border-white/5 border-sky-200 flex flex-col justify-between">
                             <div class="flex justify-between items-start">
                                 <div>
-                                    <h3 class="text-xs font-bold text-rose-700 dark:text-rose-400 uppercase tracking-wider">Broken Links</h3>
-                                    <p class="text-sm font-semibold text-slate-900 dark:text-white mt-1">40 URLs Need Fixing</p>
+                                    <h3 class="text-xs font-bold text-rose-600 dark:text-rose-400 uppercase tracking-wider font-mono">Broken Links</h3>
+                                    <p class="text-sm font-semibold dark:text-white text-slate-900 mt-1">40 URLs Need Fixing</p>
                                 </div>
-                                <span class="text-[10px] font-bold px-2 py-0.5 bg-rose-100 text-rose-800 border border-rose-300 dark:bg-rose-950 dark:text-rose-300 dark:border-rose-800 rounded uppercase">Poor</span>
+                                <span class="text-[10px] font-bold px-2 py-0.5 bg-rose-100 dark:bg-rose-950/90 text-rose-700 dark:text-rose-300 border border-rose-500/40 rounded uppercase font-mono">Poor</span>
                             </div>
-                            <p class="text-xs text-slate-600 dark:text-slate-400 mt-2">Immediate redirection setup needed to preserve equity.</p>
+                            <p class="text-xs dark:text-slate-400 text-slate-600 mt-2">Immediate 301 redirection setup needed to preserve equity.</p>
                         </div>
 
-                        <!-- Page Speed Card -->
-                        <div class="p-4 bg-slate-50 dark:bg-slate-800/80 rounded-lg border-l-4 border-rose-500 border-t border-r border-b border-slate-200 dark:border-slate-700/80 shadow-sm flex flex-col justify-between">
+                        <div class="p-4 dark:bg-white/5 bg-sky-100/50 rounded-2xl border-l-4 border-rose-500 border-t border-r border-b dark:border-white/5 border-sky-200 flex flex-col justify-between">
                             <div class="flex justify-between items-start">
                                 <div>
-                                    <h3 class="text-xs font-bold text-rose-700 dark:text-rose-400 uppercase tracking-wider">Page Speed</h3>
-                                    <p class="text-sm font-semibold text-slate-900 dark:text-white mt-1">5.66 sec Load Time</p>
+                                    <h3 class="text-xs font-bold text-rose-600 dark:text-rose-400 uppercase tracking-wider font-mono">Page Speed</h3>
+                                    <p class="text-sm font-semibold dark:text-white text-slate-900 mt-1">5.66 sec Load Time</p>
                                 </div>
-                                <span class="text-[10px] font-bold px-2 py-0.5 bg-rose-100 text-rose-800 border border-rose-300 dark:bg-rose-950 dark:text-rose-300 dark:border-rose-800 rounded uppercase">Poor</span>
+                                <span class="text-[10px] font-bold px-2 py-0.5 bg-rose-100 dark:bg-rose-950/90 text-rose-700 dark:text-rose-300 border border-rose-500/40 rounded uppercase font-mono">Poor</span>
                             </div>
-                            <p class="text-xs text-slate-600 dark:text-slate-400 mt-2">Significantly exceeds 2.5s Core Web Vitals target.</p>
+                            <p class="text-xs dark:text-slate-400 text-slate-600 mt-2">Significantly exceeds 2.5s Core Web Vitals target.</p>
                         </div>
 
-                        <!-- Page Weight Card -->
-                        <div class="p-4 bg-slate-50 dark:bg-slate-800/80 rounded-lg border-l-4 border-rose-500 border-t border-r border-b border-slate-200 dark:border-slate-700/80 shadow-sm flex flex-col justify-between">
+                        <div class="p-4 dark:bg-white/5 bg-sky-100/50 rounded-2xl border-l-4 border-rose-500 border-t border-r border-b dark:border-white/5 border-sky-200 flex flex-col justify-between">
                             <div class="flex justify-between items-start">
                                 <div>
-                                    <h3 class="text-xs font-bold text-rose-700 dark:text-rose-400 uppercase tracking-wider">Page Weight</h3>
-                                    <p class="text-sm font-semibold text-slate-900 dark:text-white mt-1">5.6 MB Page Size</p>
+                                    <h3 class="text-xs font-bold text-rose-600 dark:text-rose-400 uppercase tracking-wider font-mono">Page Weight</h3>
+                                    <p class="text-sm font-semibold dark:text-white text-slate-900 mt-1">5.6 MB Page Size</p>
                                 </div>
-                                <span class="text-[10px] font-bold px-2 py-0.5 bg-rose-100 text-rose-800 border border-rose-300 dark:bg-rose-950 dark:text-rose-300 dark:border-rose-800 rounded uppercase">Poor</span>
+                                <span class="text-[10px] font-bold px-2 py-0.5 bg-rose-100 dark:bg-rose-950/90 text-rose-700 dark:text-rose-300 border border-rose-500/40 rounded uppercase font-mono">Poor</span>
                             </div>
-                            <p class="text-xs text-slate-600 dark:text-slate-400 mt-2">Uncompressed assets causing excessive bandwidth load.</p>
+                            <p class="text-xs dark:text-slate-400 text-slate-600 mt-2">Uncompressed assets causing excessive bandwidth load.</p>
                         </div>
 
-                        <!-- Image Alt Text Card -->
-                        <div class="p-4 bg-slate-50 dark:bg-slate-800/80 rounded-lg border-l-4 border-amber-500 border-t border-r border-b border-slate-200 dark:border-slate-700/80 shadow-sm flex flex-col justify-between">
+                        <div class="p-4 dark:bg-white/5 bg-sky-100/50 rounded-2xl border-l-4 border-amber-500 border-t border-r border-b dark:border-white/5 border-sky-200 flex flex-col justify-between">
                             <div class="flex justify-between items-start">
                                 <div>
-                                    <h3 class="text-xs font-bold text-amber-700 dark:text-amber-400 uppercase tracking-wider">Image Alt Text</h3>
-                                    <p class="text-sm font-semibold text-slate-900 dark:text-white mt-1">257 / 265 Missing Alt</p>
+                                    <h3 class="text-xs font-bold text-amber-600 dark:text-amber-400 uppercase tracking-wider font-mono">Image Alt Text</h3>
+                                    <p class="text-sm font-semibold dark:text-white text-slate-900 mt-1">257 / 265 Missing Alt</p>
                                 </div>
-                                <span class="text-[10px] font-bold px-2 py-0.5 bg-amber-100 text-amber-800 border border-amber-300 dark:bg-amber-950 dark:text-amber-300 dark:border-amber-800 rounded uppercase">Improve</span>
+                                <span class="text-[10px] font-bold px-2 py-0.5 bg-amber-100 dark:bg-amber-950/90 text-amber-700 dark:text-amber-300 border border-amber-500/40 rounded uppercase font-mono">Needs Work</span>
                             </div>
-                            <p class="text-xs text-slate-600 dark:text-slate-400 mt-2">Major accessibility gap impacting Google Image ranking.</p>
+                            <p class="text-xs dark:text-slate-400 text-slate-600 mt-2">Major accessibility gap impacting Google Image ranking.</p>
                         </div>
 
-                        <!-- Analytics Card -->
-                        <div class="p-4 bg-slate-50 dark:bg-slate-800/80 rounded-lg border-l-4 border-rose-500 border-t border-r border-b border-slate-200 dark:border-slate-700/80 shadow-sm flex flex-col justify-between">
+                        <div class="p-4 dark:bg-white/5 bg-sky-100/50 rounded-2xl border-l-4 border-rose-500 border-t border-r border-b dark:border-white/5 border-sky-200 flex flex-col justify-between">
                             <div class="flex justify-between items-start">
                                 <div>
-                                    <h3 class="text-xs font-bold text-rose-700 dark:text-rose-400 uppercase tracking-wider">Analytics Tracking</h3>
-                                    <p class="text-sm font-semibold text-slate-900 dark:text-white mt-1">Google Analytics Not Detected</p>
+                                    <h3 class="text-xs font-bold text-rose-600 dark:text-rose-400 uppercase tracking-wider font-mono">Analytics Tracking</h3>
+                                    <p class="text-sm font-semibold dark:text-white text-slate-900 mt-1">Google Analytics Missing</p>
                                 </div>
-                                <span class="text-[10px] font-bold px-2 py-0.5 bg-rose-100 text-rose-800 border border-rose-300 dark:bg-rose-950 dark:text-rose-300 dark:border-rose-800 rounded uppercase">Poor</span>
+                                <span class="text-[10px] font-bold px-2 py-0.5 bg-rose-100 dark:bg-rose-950/90 text-rose-700 dark:text-rose-300 border border-rose-500/40 rounded uppercase font-mono">Poor</span>
                             </div>
-                            <p class="text-xs text-slate-600 dark:text-slate-400 mt-2">Missing traffic tracking tag limits conversion visibility.</p>
+                            <p class="text-xs dark:text-slate-400 text-slate-600 mt-2">Missing tracking tag limits conversion visibility.</p>
                         </div>
 
                     </div>
@@ -401,71 +455,67 @@
         </section>
 
         <!-- Full Interactive SEO Checklist Section -->
-        <section class="print-card bg-white dark:bg-slate-800/40 border border-slate-200 dark:border-slate-700/70 rounded-xl p-6 shadow-sm dark:shadow-xl">
+        <section class="print-card glass-card rounded-3xl p-6">
             
-            <!-- Section Header & Filter Controls -->
-            <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pb-6 border-b border-slate-200 dark:border-slate-700/60">
+            <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pb-6 border-b border-sky-400/20">
                 <div>
                     <div class="flex items-center gap-3">
-                        <h2 class="text-lg font-extrabold text-slate-900 dark:text-white uppercase tracking-wider">FULL SEO CHECKLIST</h2>
-                        <span id="showing-count" class="text-xs font-semibold px-2.5 py-0.5 bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-200 rounded-full">33 Items</span>
+                        <h2 class="heading-font text-xl font-extrabold dark:text-white text-slate-900 uppercase tracking-wider">FULL SEO CHECKLIST</h2>
+                        <span id="showing-count" class="text-xs font-mono font-bold px-2.5 py-0.5 bg-sky-500/10 text-sky-600 dark:text-sky-400 border border-sky-500/30 rounded-full">33 Items</span>
                     </div>
-                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">Source metrics condensed for quick client review & decision making</p>
+                    <p class="text-xs dark:text-slate-400 text-slate-600 mt-0.5">Filter by audit result or search criteria</p>
                 </div>
 
-                <!-- Interactive Filters & Search Box (Hidden in Print) -->
                 <div class="flex flex-wrap items-center gap-3 no-print">
-                    <!-- Search Input -->
-                    <div class="relative min-w-[200px]">
+                    <div class="relative min-w-[220px]">
                         <i data-lucide="search" class="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"></i>
-                        <input type="text" id="checklist-search" placeholder="Search check name or status..." class="w-full bg-slate-100 dark:bg-slate-900/90 text-xs text-slate-800 dark:text-slate-200 placeholder-slate-400 dark:placeholder-slate-500 pl-9 pr-3 py-2 rounded-lg border border-slate-300 dark:border-slate-700 focus:outline-none focus:border-cyan-500 transition-all">
+                        <input type="text" id="checklist-search" placeholder="Search parameters..." class="w-full dark:bg-white/5 bg-white text-xs dark:text-white text-slate-800 placeholder-slate-400 pl-9 pr-3 py-2 rounded-xl border border-sky-400/30 focus:outline-none focus:border-sky-500 transition-all">
                     </div>
 
-                    <!-- Category Filter Buttons -->
-                    <div class="flex items-center p-1 bg-slate-100 dark:bg-slate-900/90 rounded-lg border border-slate-300 dark:border-slate-700 text-xs font-medium">
-                        <button onclick="filterChecklist('all')" id="btn-all" class="px-3 py-1.5 rounded-md text-white bg-slate-800 dark:bg-slate-800 transition-all shadow-sm">All (33)</button>
-                        <button onclick="filterChecklist('good')" id="btn-good" class="px-3 py-1.5 rounded-md text-slate-600 dark:text-slate-400 hover:text-emerald-600 dark:hover:text-emerald-400 transition-all">Good (19)</button>
-                        <button onclick="filterChecklist('improve')" id="btn-improve" class="px-3 py-1.5 rounded-md text-slate-600 dark:text-slate-400 hover:text-amber-600 dark:hover:text-amber-400 transition-all">Improve (8)</button>
-                        <button onclick="filterChecklist('poor')" id="btn-poor" class="px-3 py-1.5 rounded-md text-slate-600 dark:text-slate-400 hover:text-rose-600 dark:hover:text-rose-400 transition-all">Poor (6)</button>
+                    <div class="flex items-center p-1 dark:bg-white/5 bg-sky-100 rounded-xl border border-sky-400/20 text-xs font-medium">
+                        <button onclick="filterChecklist('all')" id="btn-all" class="px-3 py-1.5 rounded-lg text-white bg-gradient-to-r from-sky-500 to-blue-600 font-bold transition-all shadow-md shadow-sky-500/20">All (33)</button>
+                        <button onclick="filterChecklist('good')" id="btn-good" class="px-3 py-1.5 rounded-lg dark:text-slate-400 text-slate-600 hover:text-emerald-500 transition-all">Good (19)</button>
+                        <button onclick="filterChecklist('improve')" id="btn-improve" class="px-3 py-1.5 rounded-lg dark:text-slate-400 text-slate-600 hover:text-amber-500 transition-all">Improve (8)</button>
+                        <button onclick="filterChecklist('poor')" id="btn-poor" class="px-3 py-1.5 rounded-lg dark:text-slate-400 text-slate-600 hover:text-rose-500 transition-all">Poor (6)</button>
                     </div>
                 </div>
             </div>
 
-            <!-- 33 Checklist Items Table / Card Container -->
+            <!-- 33 Checklist Items Container -->
             <div id="checklist-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3.5 mt-6">
-                <!-- Checklist Items Javascript-populated -->
             </div>
 
-            <!-- Empty State Notice for Filtering -->
-            <div id="empty-state" class="hidden py-12 text-center text-slate-500 dark:text-slate-400">
-                <i data-lucide="file-search" class="w-10 h-10 mx-auto text-slate-400 dark:text-slate-600 mb-2"></i>
-                <p class="text-sm font-semibold">No audit checks match your search or filter</p>
-                <button onclick="resetFilters()" class="mt-3 text-xs text-cyan-600 dark:text-cyan-400 underline hover:text-cyan-700">Reset Search and Filters</button>
+            <div id="empty-state" class="hidden py-12 text-center text-slate-400">
+                <i data-lucide="file-search" class="w-10 h-10 mx-auto text-slate-400 mb-2"></i>
+                <p class="text-sm font-semibold">No audit checks match your filter query</p>
+                <button onclick="resetFilters()" class="mt-3 text-xs text-sky-500 underline hover:text-sky-600">Reset Filters</button>
             </div>
         </section>
 
-        <!-- Executive Next Priorities Banner -->
-        <section class="print-card bg-gradient-to-r from-slate-900 via-slate-950 to-slate-900 text-white rounded-xl p-5 shadow-xl relative overflow-hidden border border-slate-800">
-            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
-                <div class="flex items-center gap-3">
-                    <div class="p-2.5 bg-cyan-950 border border-cyan-800 rounded-xl text-cyan-400 shrink-0">
-                        <i data-lucide="zap" class="w-6 h-6"></i>
+        <!-- Executive Call to Action Banner -->
+        <section class="print-card glass-card rounded-3xl p-8 border border-sky-500/30 relative overflow-hidden bg-gradient-to-r dark:from-reshad-surface dark:via-reshad-dark dark:to-reshad-surface from-sky-100 via-sky-50 to-sky-100">
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
+                <div class="flex items-center gap-4">
+                    <div class="p-3 bg-sky-500/10 border border-sky-500/30 rounded-2xl text-sky-600 dark:text-sky-400 shrink-0">
+                        <i data-lucide="zap" class="w-7 h-7"></i>
                     </div>
                     <div>
-                        <h3 class="text-xs font-black tracking-widest text-cyan-400 uppercase">NEXT PRIORITIES & ACTION PLAN</h3>
-                        <p class="text-sm md:text-base font-bold text-white mt-0.5">
-                            Fix broken URLs <span class="text-slate-600 font-normal">|</span> 
-                            Improve load speed <span class="text-slate-600 font-normal">|</span> 
-                            Add image alt text <span class="text-slate-600 font-normal">|</span> 
-                            Configure analytics
+                        <span class="text-xs font-mono font-bold text-sky-600 dark:text-sky-400 uppercase tracking-widest">Reshad Sheikh Portfolio Case Study</span>
+                        <h3 class="heading-font text-2xl font-black dark:text-white text-slate-900 mt-1">Ready to Optimize Your Web Presence?</h3>
+                        <p class="text-xs sm:text-sm dark:text-slate-400 text-slate-600 mt-1 max-w-xl">
+                            Combining UI/UX expertise with data-driven Technical SEO to elevate user experience and search ranking performance.
                         </p>
                     </div>
                 </div>
-                <div class="shrink-0 text-right">
-                    <a href="https://docs.google.com/spreadsheets/d/1NgBtU8XyiS7eYyWJVDCE0K8Wzqnp4DFFaKMmWgkj5BY/edit?usp=sharing" target="_blank" class="inline-flex items-center gap-1.5 text-xs text-cyan-400 hover:text-cyan-300 font-bold underline mb-1">
-                        Open Full Google Sheet <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
+                <div class="shrink-0 flex flex-wrap gap-3">
+                    <a href="https://reshadsheikh.github.io/#contact" target="_blank" class="px-6 py-3 rounded-full bg-gradient-to-r from-sky-500 to-blue-600 text-white font-bold text-xs hover:from-sky-400 hover:to-blue-500 transition-all shadow-lg shadow-sky-500/25 flex items-center space-x-2">
+                        <i data-lucide="mail" class="w-4 h-4"></i>
+                        <span>Hire / Contact</span>
                     </a>
-                    <span class="text-[11px] font-medium text-slate-400 block">Prepared SEO audit data</span>
+                    <a href="https://reshadsheikh.github.io/" target="_blank" class="px-6 py-3 rounded-full glass-card hover:border-sky-400 dark:text-white text-slate-800 font-semibold text-xs transition-all flex items-center space-x-1.5">
+                        <span>Main Portfolio</span>
+                        <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+                    </a>
                 </div>
             </div>
         </section>
@@ -473,15 +523,15 @@
     </main>
 
     <!-- Footer -->
-    <footer class="border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 py-4 text-center text-xs text-slate-500 dark:text-slate-400 no-print transition-colors duration-200">
+    <footer class="border-t border-sky-400/20 glass-card py-6 text-center text-xs dark:text-slate-400 text-slate-600 no-print">
         <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row justify-between items-center gap-2">
-            <p>© 2026 <strong>goFLY SEO Audit</strong> (goflybd.com).33 audit parameters preserved.</p>
+            <p>© 2026 <strong>goFLY SEO Audit Case Study</strong>. Crafted by <a href="https://reshadsheikh.github.io/" target="_blank" class="text-sky-600 dark:text-sky-400 font-bold hover:underline">Reshad Sheikh</a>.</p>
             <div class="flex items-center gap-4">
-                <a href="https://docs.google.com/spreadsheets/d/1NgBtU8XyiS7eYyWJVDCE0K8Wzqnp4DFFaKMmWgkj5BY/edit?usp=sharing" target="_blank" class="text-emerald-700 dark:text-emerald-400 font-semibold hover:underline flex items-center gap-1">
-                    <i data-lucide="file-spreadsheet" class="w-3.5 h-3.5"></i> Live Excel Sheet
+                <a href="https://docs.google.com/spreadsheets/d/1NgBtU8XyiS7eYyWJVDCE0K8Wzqnp4DFFaKMmWgkj5BY/edit?usp=sharing" target="_blank" class="text-sky-600 dark:text-sky-400 font-semibold hover:underline flex items-center gap-1">
+                    <i data-lucide="file-spreadsheet" class="w-3.5 h-3.5"></i> Google Sheets Data
                 </a>
-                <span class="text-slate-300 dark:text-slate-700">•</span>
-                <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-all flex items-center gap-1">
+                <span class="text-slate-400">•</span>
+                <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="dark:text-slate-400 text-slate-600 hover:text-sky-600 dark:hover:text-white transition-all flex items-center gap-1">
                     Back to Top <i data-lucide="arrow-up" class="w-3 h-3"></i>
                 </button>
             </div>
@@ -490,7 +540,6 @@
 
     <!-- JavaScript Data Logic & Theme Switcher -->
     <script>
-        // Exact 33 Audit Checks dataset
         const auditChecks = [
             { id: 1, category: "column1", name: "DA", value: "11", status: "POOR", desc: "Domain Authority level" },
             { id: 2, category: "column1", name: "PA", value: "45", status: "IMPROVE", desc: "Page Authority rating" },
@@ -532,27 +581,26 @@
         let currentFilter = 'all';
         let searchQuery = '';
 
-        // Theme Toggle Controller (Default: Light Mode)
+        // Theme Switcher Functionality
         function toggleTheme() {
             const htmlElement = document.documentElement;
             const isDark = htmlElement.classList.contains('dark');
             
             if (isDark) {
                 htmlElement.classList.remove('dark');
-                document.getElementById('theme-icon-sun').classList.add('hidden');
-                document.getElementById('theme-icon-moon').classList.remove('hidden');
+                document.getElementById('theme-icon-sun').classList.remove('hidden');
+                document.getElementById('theme-icon-moon').classList.add('hidden');
                 document.getElementById('theme-text').textContent = 'Dark Mode';
                 localStorage.setItem('theme', 'light');
             } else {
                 htmlElement.classList.add('dark');
-                document.getElementById('theme-icon-sun').classList.remove('hidden');
-                document.getElementById('theme-icon-moon').classList.add('hidden');
+                document.getElementById('theme-icon-sun').classList.add('hidden');
+                document.getElementById('theme-icon-moon').classList.remove('hidden');
                 document.getElementById('theme-text').textContent = 'Light Mode';
                 localStorage.setItem('theme', 'dark');
             }
         }
 
-        // Render checklist cards dynamically
         function renderChecklist() {
             const container = document.getElementById('checklist-container');
             const emptyState = document.getElementById('empty-state');
@@ -581,37 +629,33 @@
                 filteredData.forEach(item => {
                     let badgeStyles = '';
                     let dotColor = '';
-                    let printBadgeClass = '';
                     
                     if (item.status === 'GOOD') {
-                        badgeStyles = 'bg-emerald-100 text-emerald-800 border-emerald-300 dark:bg-emerald-950/80 dark:text-emerald-400 dark:border-emerald-800/80';
-                        dotColor = 'bg-emerald-500';
-                        printBadgeClass = 'print-badge-good';
+                        badgeStyles = 'bg-emerald-100 dark:bg-emerald-950/90 text-emerald-700 dark:text-emerald-300 border-emerald-500/40 shadow-sm';
+                        dotColor = 'bg-emerald-500 shadow-sm shadow-emerald-500/50';
                     } else if (item.status === 'IMPROVE') {
-                        badgeStyles = 'bg-amber-100 text-amber-800 border-amber-300 dark:bg-amber-950/80 dark:text-amber-400 dark:border-amber-800/80';
-                        dotColor = 'bg-amber-500';
-                        printBadgeClass = 'print-badge-improve';
+                        badgeStyles = 'bg-amber-100 dark:bg-amber-950/90 text-amber-700 dark:text-amber-300 border-amber-500/40 shadow-sm';
+                        dotColor = 'bg-amber-500 shadow-sm shadow-amber-500/50';
                     } else if (item.status === 'POOR') {
-                        badgeStyles = 'bg-rose-100 text-rose-800 border-rose-300 dark:bg-rose-950/80 dark:text-rose-400 dark:border-rose-800/80';
-                        dotColor = 'bg-rose-500';
-                        printBadgeClass = 'print-badge-poor';
+                        badgeStyles = 'bg-rose-100 dark:bg-rose-950/90 text-rose-700 dark:text-rose-300 border-rose-500/40 shadow-sm';
+                        dotColor = 'bg-rose-500 shadow-sm shadow-rose-500/50';
                     }
 
                     const cardHtml = `
-                        <div class="print-card bg-slate-50 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-700/60 hover:border-slate-400 dark:hover:border-slate-600 rounded-xl p-3.5 flex items-center justify-between gap-3 transition-all shadow-sm">
+                        <div class="print-card dark:bg-white/5 bg-sky-100/40 border border-sky-400/20 hover:border-sky-500/50 rounded-2xl p-3.5 flex items-center justify-between gap-3 transition-all">
                             <div class="flex items-center gap-3 min-w-0">
                                 <span class="w-2.5 h-2.5 rounded-full shrink-0 ${dotColor}"></span>
                                 <div class="truncate">
-                                    <h4 class="text-xs font-bold text-slate-800 dark:text-slate-100 truncate flex items-center gap-1.5">
-                                        <span class="text-[10px] text-slate-400 font-mono">#${item.id}</span>
+                                    <h4 class="text-xs font-bold dark:text-white text-slate-900 truncate flex items-center gap-1.5">
+                                        <span class="text-[10px] dark:text-slate-500 text-slate-400 font-mono">#${item.id}</span>
                                         <span>${item.name}</span>
                                     </h4>
-                                    <p class="text-[11px] font-medium text-slate-600 dark:text-slate-400 truncate mt-0.5" title="${item.value}">
+                                    <p class="text-[11px] font-medium dark:text-slate-400 text-slate-600 truncate mt-0.5" title="${item.value}">
                                         ${item.value}
                                     </p>
                                 </div>
                             </div>
-                            <span class="shrink-0 px-2.5 py-1 text-[10px] font-extrabold tracking-wide uppercase rounded-md border ${badgeStyles} ${printBadgeClass}">
+                            <span class="shrink-0 px-2.5 py-1 text-[10px] font-bold tracking-wide uppercase rounded-lg border font-mono ${badgeStyles}">
                                 ${item.status === 'IMPROVE' ? 'NEEDS WORK' : item.status}
                             </span>
                         </div>
@@ -623,23 +667,21 @@
             lucide.createIcons();
         }
 
-        // Category Filter Controller
         function filterChecklist(filter) {
             currentFilter = filter;
             
             ['all', 'good', 'improve', 'poor'].forEach(type => {
                 const btn = document.getElementById(`btn-${type}`);
                 if (type === filter) {
-                    btn.className = 'px-3 py-1.5 rounded-md text-white bg-slate-800 dark:bg-slate-700 transition-all shadow-sm font-semibold';
+                    btn.className = 'px-3 py-1.5 rounded-lg text-white bg-gradient-to-r from-sky-500 to-blue-600 font-bold transition-all shadow-md shadow-sky-500/20';
                 } else {
-                    btn.className = 'px-3 py-1.5 rounded-md text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-all font-medium';
+                    btn.className = 'px-3 py-1.5 rounded-lg dark:text-slate-400 text-slate-600 hover:text-sky-600 dark:hover:text-white transition-all font-medium';
                 }
             });
 
             renderChecklist();
         }
 
-        // Search Input Controller
         document.getElementById('checklist-search').addEventListener('input', (e) => {
             searchQuery = e.target.value;
             renderChecklist();
@@ -651,18 +693,17 @@
             filterChecklist('all');
         }
 
-        // Initial Load Initialization (Light Mode default)
         window.onload = function() {
             const savedTheme = localStorage.getItem('theme');
-            if (savedTheme === 'dark') {
-                document.documentElement.classList.add('dark');
+            if (savedTheme === 'light') {
+                document.documentElement.classList.remove('dark');
                 document.getElementById('theme-icon-sun').classList.remove('hidden');
                 document.getElementById('theme-icon-moon').classList.add('hidden');
-                document.getElementById('theme-text').textContent = 'Light Mode';
+                document.getElementById('theme-text').textContent = 'Dark Mode';
             } else {
-                document.documentElement.classList.remove('dark');
+                document.documentElement.classList.add('dark');
             }
-            
+
             lucide.createIcons();
             renderChecklist();
         };
