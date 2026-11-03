@@ -86,24 +86,22 @@
 
         @media (max-width: 639px) {
             .desktop-preview-container {
-                height: 210px;
+                height: 220px;
             }
         }
 
-        /* Scale a 1280px desktop resolution to fit inside the preview container */
+        /* 
+          Force 1400px Desktop Viewport inside iframe 
+          and scale down visually so inner media queries trigger Desktop layout!
+        */
         .desktop-preview-iframe {
             position: absolute;
             top: 0;
             left: 0;
-            width: 1280px;
-            height: 720px;
+            width: 1400px !important;
+            height: 800px !important;
             border: none;
-            transform-origin: top left;
-            /* Scale calculation for desktop view rendering: 
-               At 500px container width: scale(0.390625)
-               At 460px container width: scale(0.359375)
-            */
-            transform: scale(0.390625);
+            transform-origin: 0 0;
             pointer-events: auto;
         }
 
@@ -247,7 +245,7 @@
                 Selected Work & Case Studies
             </span>
             <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight dark:text-white text-slate-900">My Portfolio</h1>
-            <p class="dark:text-gray-400 text-slate-600 text-sm md:text-base">Explore SEO dashboards and UI/UX design case studies.</p>
+            <p class="dark:text-gray-400 text-slate-600 text-sm md:text-base">Explore technical SEO audit dashboards and UI/UX design case studies.</p>
         </div>
 
         <!-- SECTION 1: SEO AUDIT DASHBOARDS -->
@@ -286,7 +284,7 @@
                         
                         <!-- Fixed Desktop Ratio Container -->
                         <div class="desktop-preview-container preview-wrapper">
-                            <iframe src="/portfolio/seo/gofly-seo-audit/" class="desktop-preview-iframe" title="goFLY Website SEO Technical Audit Live Preview" loading="lazy"></iframe>
+                            <iframe src="/portfolio/seo/gofly-seo-audit/" class="desktop-preview-iframe" title="goFLY Website SEO Technical Audit Live Desktop View" loading="lazy"></iframe>
                         </div>
                     </div>
                     
@@ -447,17 +445,18 @@
     <script>
         lucide.createIcons();
 
-        // Responsive Scaling Handler for Desktop Window Iframe Viewports
+        // Dynamic Calculation Engine to force true Desktop (1400px) layout scaling inside mini window cards
         function updateIframeScales() {
-            const TARGET_WIDTH = 1280;
+            const DESKTOP_WIDTH = 1400; // Target desktop resolution
             const wrappers = document.querySelectorAll('.preview-wrapper');
 
             wrappers.forEach(wrapper => {
                 const containerWidth = wrapper.clientWidth;
                 if (containerWidth > 0) {
-                    const scale = containerWidth / TARGET_WIDTH;
+                    const scale = containerWidth / DESKTOP_WIDTH;
                     const iframe = wrapper.querySelector('.desktop-preview-iframe');
                     if (iframe) {
+                        iframe.style.width = `${DESKTOP_WIDTH}px`;
                         iframe.style.transform = `scale(${scale})`;
                     }
                 }
@@ -466,7 +465,9 @@
 
         window.addEventListener('resize', updateIframeScales);
         window.addEventListener('DOMContentLoaded', updateIframeScales);
+        // Trigger again once layout completes
         setTimeout(updateIframeScales, 100);
+        setTimeout(updateIframeScales, 500);
 
         // Mouse Wheel Scroll & Touch Optimization for Nova Fit Window
         const novaSlider = document.getElementById('nova-fit-slider');
