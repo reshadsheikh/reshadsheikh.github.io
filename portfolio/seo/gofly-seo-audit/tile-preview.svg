@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 600" fill="none">
+  <defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#071a20"/><stop offset="1" stop-color="#0b1018"/></linearGradient></defs>
+  <rect width="960" height="600" fill="url(#bg)"/>
+  <rect x="50" y="42" width="860" height="516" rx="24" fill="#101a22" stroke="#26333c" stroke-width="2"/>
+  <circle cx="82" cy="76" r="8" fill="#f87171"/><circle cx="108" cy="76" r="8" fill="#fbbf24"/><circle cx="134" cy="76" r="8" fill="#4ade80"/>
+  <text x="172" y="83" fill="#94a3b8" font-family="Arial,sans-serif" font-size="18">goFLY · TECHNICAL SEO AUDIT</text>
+  <text x="92" y="164" fill="#f8fafc" font-family="Arial,sans-serif" font-size="38" font-weight="700">Website health snapshot</text>
+  <text x="92" y="202" fill="#94a3b8" font-family="Arial,sans-serif" font-size="20">33 technical checkpoints</text>
+  <rect x="92" y="244" width="238" height="210" rx="18" fill="#0a2523" stroke="#1f5142"/>
+  <text x="122" y="292" fill="#86efac" font-family="Arial,sans-serif" font-size="18">HEALTH SCORE</text>
+  <text x="122" y="370" fill="#f8fafc" font-family="Arial,sans-serif" font-size="62" font-weight="700">72%</text>
+  <rect x="122" y="400" width="170" height="10" rx="5" fill="#183c35"/><rect x="122" y="400" width="122" height="10" rx="5" fill="#4ade80"/>
+  <rect x="356" y="244" width="514" height="94" rx="16" fill="#17212a"/>
+  <circle cx="394" cy="291" r="14" fill="#4ade80"/><text x="426" y="298" fill="#e2e8f0" font-family="Arial,sans-serif" font-size="21">19 checks looking good</text>
+  <rect x="356" y="356" width="514" height="94" rx="16" fill="#17212a"/>
+  <circle cx="394" cy="403" r="14" fill="#fbbf24"/><text x="426" y="410" fill="#e2e8f0" font-family="Arial,sans-serif" font-size="21">8 checks to improve</text>
+  <rect x="356" y="468" width="514" height="54" rx="14" fill="#17212a"/>
+  <circle cx="394" cy="495" r="12" fill="#fb7185"/><text x="426" y="502" fill="#e2e8f0" font-family="Arial,sans-serif" font-size="19">6 priority fixes identified</text>
+</svg>

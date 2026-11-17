@@ -2,6 +2,7 @@
 <html lang="en" class="dark">
 <head>
     <meta charset="UTF-8">
+    <script src="site-paths.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reshad Sheikh | UI/UX Designer & Community Manager</title>
     <script src="https://cdn.tailwindcss.com"></script>
@@ -19,6 +20,7 @@
         }
     </script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Montserrat:wght@800&family=Playfair+Display:ital,wght@1,400;1,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/floating-scrollbar.css?v=2">
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
         /* Base typography & Smooth Scroll */
@@ -168,6 +170,20 @@
             background: linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.08) 20%, rgba(130, 190, 30, 0.8) 50%, rgba(0, 0, 0, 0.08) 80%, transparent 100%);
             box-shadow: 0 0 10px rgba(176, 228, 84, 0.4);
         }
+
+        .work-marquee { overflow: hidden; }
+        #home, #about, #skills, #experience, #contact { scroll-margin-top: 88px; }
+        .work-marquee-track { display: flex; width: max-content; gap: 1rem; will-change: transform; }
+        .work-tile { width: clamp(240px, 32vw, 440px); flex: 0 0 auto; }
+        #preview-content { height: clamp(320px, 62vh, 680px); border-radius: 1rem; overflow: hidden; isolation: isolate; }
+        #preview-content > img, #preview-content > video, #preview-content > iframe { display: block; width: 100%; height: 100%; max-height: none; border: 0; border-radius: inherit; }
+        #preview-content > img { object-fit: contain; background: rgba(0, 0, 0, .18); }
+        #preview-content > video { object-fit: contain; background: #050505; }
+        #preview-content > iframe { overflow: hidden; }
+        .work-tile img { transition: transform .55s ease; }
+        .work-tile:hover img { transform: scale(1.035); }
+        @media (max-width: 639px) { .work-tile { width: 72vw; } }
+        @media (prefers-reduced-motion: reduce) { .work-marquee-track { transform: none !important; } }
     </style>
 </head>
 <body class="bg-[#0a0a0a] text-white dark:bg-[#0a0a0a] dark:text-white bg-slate-50 text-slate-900 selection:bg-[#B0E454] selection:text-black transition-colors duration-300 min-h-screen">
@@ -178,7 +194,7 @@
     <!-- Main Navigation Bar -->
     <nav id="navbar" class="fixed top-0 w-full z-50 glass border-b border-white/5 dark:border-white/5 border-black/5 py-4 transition-all duration-300">
         <div class="max-w-6xl mx-auto px-6 flex justify-between items-center">
-            <a href="https://reshadsheikh.github.io/" class="text-xl font-bold tracking-tighter uppercase dark:text-white text-slate-900">
+            <a href="./" class="text-xl font-bold tracking-tighter uppercase dark:text-white text-slate-900">
                 Reshad<span class="text-[#B0E454]">.</span>
             </a>
             
@@ -187,8 +203,8 @@
                 <div class="flex gap-8 text-xs font-semibold tracking-widest uppercase dark:text-gray-300 text-gray-700">
                     <a href="#home" class="hover:text-[#B0E454] transition-colors">Home</a>
                     <a href="#about" class="hover:text-[#B0E454] transition-colors">About</a>
-                    <a href="/portfolio/" class="hover:text-[#B0E454] transition-colors">Portfolio</a>
-                    <a href="#skills" class="hover:text-[#B0E454] transition-colors">Skills</a>
+                    <a href="portfolio/" class="hover:text-[#B0E454] transition-colors">Portfolio</a>
+                    <a href="#skills" class="hover:text-[#B0E454] transition-colors">Works</a>
                     <a href="#experience" class="hover:text-[#B0E454] transition-colors">Experience</a>
                 </div>
 
@@ -225,8 +241,8 @@
         <div class="flex flex-col gap-6 text-xl font-bold uppercase tracking-wider dark:text-white text-slate-900">
             <a href="#home" class="mobile-link hover:text-[#B0E454] transition-colors py-2 border-b dark:border-white/5 border-black/5">Home</a>
             <a href="#about" class="mobile-link hover:text-[#B0E454] transition-colors py-2 border-b dark:border-white/5 border-black/5">About</a>
-            <a href="/portfolio/" class="mobile-link hover:text-[#B0E454] transition-colors py-2 border-b dark:border-white/5 border-black/5">Portfolio</a>
-            <a href="#skills" class="mobile-link hover:text-[#B0E454] transition-colors py-2 border-b dark:border-white/5 border-black/5">Skills</a>
+            <a href="portfolio/" class="mobile-link hover:text-[#B0E454] transition-colors py-2 border-b dark:border-white/5 border-black/5">Portfolio</a>
+            <a href="#skills" class="mobile-link hover:text-[#B0E454] transition-colors py-2 border-b dark:border-white/5 border-black/5">Works</a>
             <a href="#experience" class="mobile-link hover:text-[#B0E454] transition-colors py-2 border-b dark:border-white/5 border-black/5">Experience</a>
         </div>
         <div class="pt-6">
@@ -271,11 +287,11 @@
                 </p>
 
                 <div class="flex flex-row gap-2.5 sm:gap-4 justify-center w-full max-w-md px-2">
-                    <a href="/portfolio/" class="flex-1 bg-[#B0E454] text-black py-2.5 sm:py-3 rounded-full font-bold hover:bg-slate-900 hover:text-white dark:hover:bg-white dark:hover:text-black transition duration-300 shadow-xl text-center text-xs sm:text-sm md:text-base whitespace-nowrap">
+                    <a href="portfolio/" class="flex-1 bg-[#B0E454] text-black py-2.5 sm:py-3 rounded-full font-bold hover:bg-slate-900 hover:text-white dark:hover:bg-white dark:hover:text-black transition duration-300 shadow-xl text-center text-xs sm:text-sm md:text-base whitespace-nowrap">
                         Portfolio
                     </a>
                     <a href="#skills" class="flex-1 dark:bg-black/75 dark:text-white bg-white/85 text-slate-900 border dark:border-white/20 border-slate-300 backdrop-blur-md py-2.5 sm:py-3 rounded-full font-bold hover:bg-black/10 dark:hover:bg-white/10 transition duration-300 text-center text-xs sm:text-sm md:text-base whitespace-nowrap">
-                        My Expertise
+                        View Works
                     </a>
                 </div>
             </div>
@@ -310,42 +326,25 @@
         </div>
     </section>
 
-    <!-- Skills Section -->
-    <section id="skills" class="py-24 px-6 relative z-10">
-        <div class="max-w-6xl mx-auto">
-            <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-4">
-                <div>
-                    <h2 class="text-4xl font-bold mb-2 dark:text-white text-slate-900">Expertise</h2>
-                    <p class="dark:text-gray-500 text-slate-500">Combining technical tools with interpersonal intelligence.</p>
-                </div>
-                <div class="text-sm font-semibold border-b border-[#B0E454]/50 pb-1 text-[#B0E454] tracking-wider uppercase">Professional Skillset</div>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="skill-card glass p-8 rounded-2xl dark:border-white/5 border-black/5 shadow-sm transition duration-300">
-                    <div class="w-12 h-12 bg-[#B0E454]/20 rounded-xl flex items-center justify-center mb-6">
-                        <i data-lucide="layout" class="text-slate-900 dark:text-[#B0E454]"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3 dark:text-white text-slate-900">Modern Design</h3>
-                    <p class="dark:text-gray-400 text-slate-600 text-sm leading-relaxed">Expertise in Figma UI/UX, After effect Motion, 3D Elements</p>
-                </div>
-                <div class="skill-card glass p-8 rounded-2xl dark:border-white/5 border-black/5 shadow-sm transition duration-300">
-                    <div class="w-12 h-12 bg-[#B0E454]/20 rounded-xl flex items-center justify-center mb-6">
-                        <i data-lucide="search" class="text-slate-900 dark:text-[#B0E454]"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3 dark:text-white text-slate-900">Research & Analysis</h3>
-                    <p class="dark:text-gray-400 text-slate-600 text-sm leading-relaxed">Uncovering hidden seo details to drive strategic keyword decisions to grow</p>
-                </div>
-                <div class="skill-card glass p-8 rounded-2xl dark:border-white/5 border-black/5 shadow-sm transition duration-300">
-                    <div class="w-12 h-12 bg-[#B0E454]/20 rounded-xl flex items-center justify-center mb-6">
-                        <i data-lucide="users" class="text-slate-900 dark:text-[#B0E454]"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3 dark:text-white text-slate-900">Social Direction</h3>
-                    <p class="dark:text-gray-400 text-slate-600 text-sm leading-relaxed">Managing accounts, engagement, finding ideas, maintain relevancey.</p>
-                </div>
-            </div>
+    <!-- Works marquee -->
+    <section id="skills" class="py-20 sm:py-28 relative z-10 overflow-hidden" aria-labelledby="work-title">
+        <div class="max-w-6xl mx-auto px-6 mb-6 sm:mb-8 flex items-center justify-between gap-4">
+            <h2 id="work-title" class="text-xs font-bold tracking-[.25em] uppercase text-[#B0E454]">Works</h2>
+            <a href="portfolio/" class="text-xs sm:text-sm font-semibold text-[#B0E454] hover:underline">All projects ↗</a>
+        </div>
+        <div class="work-marquee space-y-4 sm:space-y-6" id="work-marquee">
+            <div class="work-marquee-track" data-row="top" data-direction="1"></div>
+            <div class="work-marquee-track" data-row="bottom" data-direction="-1"></div>
         </div>
     </section>
+
+    <dialog id="work-preview" class="w-[min(94vw,1120px)] max-w-none max-h-[94vh] overflow-y-auto rounded-3xl p-0 glass dark:text-white text-slate-900 backdrop:bg-black/75">
+        <div class="p-4 sm:p-6">
+            <div class="flex justify-between items-center mb-4"><div><p class="text-[10px] uppercase tracking-[.2em] text-[#B0E454]">Project preview</p><h3 id="preview-title" class="text-xl sm:text-2xl font-bold mt-1"></h3></div><button type="button" id="preview-close" class="w-9 h-9 rounded-full border dark:border-white/15 border-black/10" aria-label="Close preview">×</button></div>
+            <div id="preview-content" class="rounded-2xl overflow-hidden bg-black/20"></div>
+            <div class="flex justify-end mt-4"><a id="preview-link" class="inline-flex items-center gap-2 rounded-full bg-[#B0E454] px-5 py-3 text-sm font-bold text-black" href="portfolio/">Open project <span aria-hidden="true">↗</span></a></div>
+        </div>
+    </dialog>
 
     <!-- Experience Journey Section -->
     <section id="experience" class="py-24 px-6 dark:bg-[#0c0c0c] bg-slate-100/70 transition-colors duration-300 relative z-10">
@@ -425,6 +424,175 @@
 
     <script>
         lucide.createIcons();
+
+        const marquee = document.getElementById('work-marquee');
+        const previewDialog = document.getElementById('work-preview');
+        const previewContent = document.getElementById('preview-content');
+        const previewTitle = document.getElementById('preview-title');
+        const previewLink = document.getElementById('preview-link');
+        const projectPath = (path) => /^https?:\/\//i.test(path) ? path : encodeURI(path);
+        function makeMedia(project, context) {
+            if (project.type === 'video') {
+                const video = document.createElement('video');
+                video.src = projectPath(project.media);
+                video.loop = true;
+                video.muted = context === 'tile';
+                video.autoplay = context === 'tile' || context === 'preview';
+                video.playsInline = true;
+                video.preload = context === 'tile' ? 'metadata' : 'auto';
+                if (context === 'preview') video.controls = true;
+                return video;
+            }
+            if (project.type === 'web' && !(context === 'tile' && project.thumbnail)) {
+                const frame = document.createElement('iframe');
+                frame.src = projectPath(project.media);
+                frame.title = `${project.title} preview`;
+                frame.loading = context === 'tile' ? 'lazy' : 'eager';
+                frame.tabIndex = -1;
+                frame.className = context === 'preview'
+                    ? 'block w-full h-full border-0 bg-white'
+                    : 'block w-full h-full border-0 bg-white';
+                frame.referrerPolicy = 'strict-origin-when-cross-origin';
+                return frame;
+            }
+            const image = document.createElement('img');
+            image.src = projectPath(context === 'tile' && project.thumbnail ? project.thumbnail : project.media);
+            image.alt = context === 'tile' ? project.title : `${project.title} preview`;
+            image.loading = context === 'tile' ? 'lazy' : 'eager';
+            image.className = context === 'tile'
+                ? 'w-full h-full object-cover group-hover:scale-[1.035] transition-transform duration-500'
+                : 'block w-full h-full object-contain';
+            return image;
+        }
+        function showProject(project) {
+            previewTitle.textContent = project.title;
+            const destination = project.href || project.media;
+            const opensExternalPage = project.type === 'web' && /^https?:\/\//i.test(destination);
+            previewLink.href = projectPath(destination);
+            previewLink.target = opensExternalPage ? '_blank' : '_self';
+            if (opensExternalPage) previewLink.rel = 'noopener noreferrer';
+            else previewLink.removeAttribute('rel');
+            previewContent.replaceChildren(makeMedia(project, 'preview'));
+            previewDialog.showModal();
+        }
+        async function loadWorkProjects() {
+            try {
+                const response = await fetch('work-gallery.json', { cache: 'no-store' });
+                if (!response.ok) throw new Error(`Gallery list returned ${response.status}`);
+                const projects = await response.json();
+                if (!projects || typeof projects !== 'object' || Array.isArray(projects)) throw new Error('work-gallery.json must contain top and bottom project arrays');
+                for (const row of ['top', 'bottom']) {
+                    if (!Array.isArray(projects[row])) projects[row] = [];
+                    projects[row] = projects[row].filter(project => project && typeof project.title === 'string' &&
+                        typeof project.media === 'string' && ['image', 'gif', 'video', 'web'].includes(project.type));
+                }
+                return projects;
+            } catch (error) {
+                console.error('Could not load work-gallery.json', error);
+                return [];
+            }
+        }
+
+        let updateMarquee = () => {};
+        function cubicBezier(progress, x1 = 0.42, y1 = 0, x2 = 0.58, y2 = 1) {
+            const sample = (t, first, second) => 3 * (1 - t) ** 2 * t * first + 3 * (1 - t) * t ** 2 * second + t ** 3;
+            let low = 0;
+            let high = 1;
+            let t = progress;
+            for (let step = 0; step < 14; step++) {
+                const x = sample(t, x1, x2);
+                if (Math.abs(x - progress) < 0.0001) break;
+                if (x < progress) low = t;
+                else high = t;
+                t = (low + high) / 2;
+            }
+            return sample(t, y1, y2);
+        }
+
+        async function buildWorkMarquee() {
+            if (!marquee) return;
+            const projects = await loadWorkProjects();
+            marquee.querySelectorAll('.work-marquee-track').forEach(track => {
+                track.replaceChildren();
+                const rowProjects = projects[track.dataset.row] || [];
+                if (!rowProjects.length) return;
+                const tileWidth = window.innerWidth <= 639
+                    ? window.innerWidth * 0.72
+                    : Math.min(440, Math.max(240, window.innerWidth * 0.32));
+                const gap = parseFloat(window.getComputedStyle(track).columnGap) || 16;
+                const setWidth = rowProjects.length * (tileWidth + gap);
+                // Keep enough complete repeated sets to cover very wide viewports,
+                // including browser zoom levels where innerWidth grows substantially.
+                const repeatCount = Math.max(3, Math.ceil((window.innerWidth + setWidth) / setWidth));
+                track.dataset.setCount = String(repeatCount);
+                for (let repeat = 0; repeat < repeatCount; repeat++) rowProjects.forEach((project) => {
+                    const tile = document.createElement('div');
+                    tile.className = 'work-tile text-left group';
+                    tile.setAttribute('role', 'button');
+                    tile.tabIndex = 0;
+                    tile.setAttribute('aria-label', `Preview ${project.title}`);
+                    const frame = document.createElement('span');
+                    frame.className = 'block relative aspect-[1.45] overflow-hidden rounded-2xl border dark:border-white/10 border-black/10 bg-slate-900 shadow-xl';
+                    const media = makeMedia(project, 'tile');
+                    media.classList.add('pointer-events-none');
+                    frame.appendChild(media);
+                    tile.appendChild(frame);
+                    tile.addEventListener('click', () => showProject(project));
+                    tile.addEventListener('keydown', event => {
+                        if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); showProject(project); }
+                    });
+                    track.appendChild(tile);
+                });
+            });
+            updateMarquee();
+        }
+
+        if (marquee) {
+            let marqueeFrame = 0;
+            let marqueeAnimating = false;
+            const marqueePositions = new WeakMap();
+            updateMarquee = () => {
+                if (marqueeFrame) return;
+                marqueeFrame = requestAnimationFrame(() => {
+                    marqueeFrame = 0;
+                    const sectionTop = marquee.getBoundingClientRect().top + window.scrollY;
+                    const scrollTravel = Math.max(0, (window.scrollY - sectionTop + window.innerHeight) * 0.3);
+                    marquee.querySelectorAll('.work-marquee-track').forEach(track => {
+                        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+                        const gap = parseFloat(window.getComputedStyle(track).columnGap) || 0;
+                        const setCount = Number(track.dataset.setCount) || 1;
+                        const cycleWidth = (track.scrollWidth + gap) / setCount;
+                        if (!cycleWidth) return;
+                        const direction = Number(track.dataset.direction);
+                        // Advance by 0.3px per scroll pixel and wrap at one complete
+                        // repeated set. Since all three sets are identical, the wrap
+                        // is visually seamless for either row.
+                        const cycleProgress = (scrollTravel % cycleWidth) / cycleWidth;
+                        const targetOffset = cubicBezier(cycleProgress) * cycleWidth;
+                        const currentOffset = marqueePositions.get(track) ?? targetOffset;
+                        const nextOffset = currentOffset + (targetOffset - currentOffset) * 0.075;
+                        marqueePositions.set(track, nextOffset);
+                        track.style.transform = `translate3d(${direction === 1 ? -nextOffset : -cycleWidth + nextOffset}px, 0, 0)`;
+                        if (Math.abs(targetOffset - nextOffset) > 0.15) marqueeAnimating = true;
+                    });
+                    if (marqueeAnimating) {
+                        marqueeAnimating = false;
+                        updateMarquee();
+                    }
+                });
+            };
+            window.addEventListener('scroll', updateMarquee, { passive: true });
+            let marqueeResizeTimer;
+            window.addEventListener('resize', () => {
+                clearTimeout(marqueeResizeTimer);
+                marqueeResizeTimer = setTimeout(() => buildWorkMarquee(), 180);
+                updateMarquee();
+            }, { passive: true });
+            window.addEventListener('load', updateMarquee, { once: true });
+        }
+        buildWorkMarquee();
+        document.getElementById('preview-close')?.addEventListener('click', () => previewDialog.close());
+        previewDialog?.addEventListener('click', event => { if (event.target === previewDialog) previewDialog.close(); });
 
         // Dark / Light Theme Controller Logic
         const htmlEl = document.documentElement;
@@ -522,6 +690,10 @@
             });
         });
 
+        // Clean path routes for the homepage sections.
+        const sectionRoute = { '/about': 'about', '/about/': 'about', '/selected-work': 'skills', '/selected-work/': 'skills', '/experience': 'experience', '/experience/': 'experience', '/contact': 'contact', '/contact/': 'contact' };
+        const routeSection = sectionRoute[window.location.pathname];
+        if (routeSection) window.addEventListener('DOMContentLoaded', () => document.getElementById(routeSection)?.scrollIntoView(), { once: true });
         // Intersection Observer animation on scroll
         window.addEventListener('DOMContentLoaded', () => {
             const observer = new IntersectionObserver((entries) => {

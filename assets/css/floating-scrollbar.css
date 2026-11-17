@@ -1,0 +1,31 @@
+/* Keep the browser's native scrollbar behavior and style only its thumb. */
+html {
+    scrollbar-color: rgba(176, 228, 84, 0.52) transparent;
+    scrollbar-width: thin;
+    scroll-behavior: smooth;
+}
+
+html::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+}
+
+html::-webkit-scrollbar-track {
+    background: transparent;
+    border: 0;
+}
+
+html::-webkit-scrollbar-thumb {
+    background: rgba(176, 228, 84, 0.48);
+    border: 3px solid transparent;
+    background-clip: padding-box;
+    border-radius: 999px;
+}
+
+html::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(176, 228, 84, 0.72);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+}

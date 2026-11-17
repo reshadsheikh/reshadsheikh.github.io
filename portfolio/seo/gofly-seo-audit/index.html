@@ -1,8 +1,9 @@
-<!-- ... existing code ... -->
 <!DOCTYPE html>
 <html lang="en" class="dark h-full">
 <head>
     <meta charset="UTF-8">
+    <script src="../../../site-paths.js"></script>
+    <link rel="stylesheet" href="assets/css/floating-scrollbar.css?v=2">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SEO Audit Report - goFLY | Reshad Sheikh Portfolio</title>
     <!-- Tailwind CSS CDN -->
@@ -119,6 +120,18 @@
             text-shadow: 0 0 16px rgba(56, 189, 248, 0.45);
         }
 
+        /* Smart Mobile Auto-Hide Header */
+        #main-header {
+            transition: transform 0.32s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.3s ease;
+            will-change: transform;
+        }
+
+        @media (max-width: 767px) {
+            #main-header.header-hidden {
+                transform: translateY(-105%);
+            }
+        }
+
         /* Custom print stylesheet */
         @media print {
             body {
@@ -136,46 +149,28 @@
                 break-inside: avoid;
             }
         }
-        /* Custom scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-            height: 8px;
-        }
-        .dark ::-webkit-scrollbar-track {
-            background: #070D18;
-        }
-        html:not(.dark) ::-webkit-scrollbar-track {
-            background: #E0F2FE;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #0284C7;
-            border-radius: 4px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #38BDF8;
-        }
     </style>
 </head>
 <body class="font-sans antialiased selection:bg-sky-400 selection:text-slate-900 min-h-screen flex flex-col justify-between">
 
     <!-- Top Navigation / Brand Banner -->
-    <header class="border-b border-sky-400/20 glass-card sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 flex flex-wrap items-center justify-between gap-4">
+    <header id="main-header" class="border-b border-sky-400/20 glass-card sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 sm:py-3.5 flex flex-wrap items-center justify-between gap-3 sm:gap-4">
             
             <!-- Reshad Sheikh Brand Header Logo -->
             <div class="flex items-center space-x-3">
-                <a href="https://reshadsheikh.github.io/" target="_blank" class="flex items-center space-x-3 group">
-                    <div class="h-10 w-10 rounded-xl bg-gradient-to-tr from-sky-500 to-blue-600 flex items-center justify-center text-white font-black text-xl shadow-lg shadow-sky-500/25 group-hover:scale-105 transition-transform">
+                <a href="./" target="_blank" class="flex items-center space-x-2.5 sm:space-x-3 group">
+                    <div class="h-9 w-9 sm:h-10 sm:w-10 rounded-xl bg-gradient-to-tr from-sky-500 to-blue-600 flex items-center justify-center text-white font-black text-lg sm:text-xl shadow-lg shadow-sky-500/25 group-hover:scale-105 transition-transform shrink-0">
                         R
                     </div>
                     <div>
-                        <div class="flex items-center gap-2">
-                            <span class="heading-font font-black text-lg tracking-wider dark:text-white text-slate-900">RESHAD <span class="text-sky-500 dark:text-sky-400">SHEIKH</span></span>
-                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold bg-sky-500/10 text-sky-600 dark:text-sky-400 border border-sky-500/30">
+                        <div class="flex items-center gap-1.5 sm:gap-2">
+                            <span class="heading-font font-black text-base sm:text-lg tracking-wider dark:text-white text-slate-900">RESHAD <span class="text-sky-500 dark:text-sky-400">SHEIKH</span></span>
+                            <span class="hidden xs:inline-flex sm:inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold bg-sky-500/10 text-sky-600 dark:text-sky-400 border border-sky-500/30">
                                 SEO Audit Case Study
                             </span>
                         </div>
-                        <p class="text-xs text-slate-600 dark:text-slate-400 flex items-center gap-1 font-mono">
+                        <p class="text-[11px] sm:text-xs text-slate-600 dark:text-slate-400 flex items-center gap-1 font-mono">
                             <i data-lucide="globe" class="w-3 h-3 text-sky-500 dark:text-sky-400"></i>
                             <span>goflybd.com</span>
                             <span class="text-slate-400 dark:text-slate-600">•</span>
@@ -186,32 +181,33 @@
             </div>
 
             <!-- Top Action Controls -->
-            <div class="flex flex-wrap items-center gap-2 sm:gap-3 no-print">
+            <div class="flex flex-wrap items-center gap-1.5 sm:gap-3 no-print">
                 <!-- Theme Switcher Toggle -->
                 <button onclick="toggleTheme()" 
                         id="theme-toggle-btn"
                         title="Toggle Whitish Sky / Dark Theme"
-                        class="inline-flex items-center gap-2 px-3.5 py-2 text-xs font-semibold dark:text-slate-200 text-slate-800 glass-card hover:border-sky-400 rounded-xl transition-all shadow-sm">
+                        class="inline-flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3.5 py-1.5 sm:py-2 text-xs font-semibold dark:text-slate-200 text-slate-800 glass-card hover:border-sky-400 rounded-xl transition-all shadow-sm">
                     <i data-lucide="sun" id="theme-icon-sun" class="w-4 h-4 text-amber-500 hidden"></i>
                     <i data-lucide="moon" id="theme-icon-moon" class="w-4 h-4 text-sky-500"></i>
-                    <span id="theme-text" class="font-bold">Light Mode</span>
+                    <span id="theme-text" class="font-bold hidden sm:inline">Light Mode</span>
                 </button>
 
                 <a href="https://docs.google.com/spreadsheets/d/1NgBtU8XyiS7eYyWJVDCE0K8Wzqnp4DFFaKMmWgkj5BY/edit?usp=sharing" 
                    target="_blank" 
                    rel="noopener noreferrer"
-                   class="inline-flex items-center gap-2 px-3.5 py-2 text-xs font-bold text-white bg-gradient-to-r from-sky-500 to-blue-600 hover:from-sky-400 hover:to-blue-500 rounded-xl transition-all shadow-lg shadow-sky-500/20">
+                   class="inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-3.5 py-1.5 sm:py-2 text-xs font-bold text-white bg-gradient-to-r from-sky-500 to-blue-600 hover:from-sky-400 hover:to-blue-500 rounded-xl transition-all shadow-lg shadow-sky-500/20">
                     <i data-lucide="file-spreadsheet" class="w-4 h-4"></i>
-                    <span>Live Sheet Report</span>
+                    <span>Live Sheet</span>
+                    <span class="hidden sm:inline">Report</span>
                     <i data-lucide="external-link" class="w-3 h-3 opacity-80"></i>
                 </a>
 
-                <a href="https://reshadsheikh.github.io/#contact" target="_blank" class="inline-flex items-center gap-2 px-3.5 py-2 text-xs font-semibold dark:text-white text-slate-800 glass-card hover:border-sky-400 rounded-xl transition-all">
+                <a href="contact/" target="_blank" class="inline-flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3.5 py-1.5 sm:py-2 text-xs font-semibold dark:text-white text-slate-800 glass-card hover:border-sky-400 rounded-xl transition-all">
                     <i data-lucide="mail" class="w-4 h-4 text-sky-500 dark:text-sky-400"></i>
-                    <span>Contact Reshad</span>
+                    <span>Contact<span class="hidden sm:inline"> Reshad</span></span>
                 </a>
 
-                <button onclick="window.print()" class="inline-flex items-center gap-2 px-3.5 py-2 text-xs font-semibold dark:text-slate-300 text-slate-700 glass-card hover:border-sky-400 rounded-xl transition-all">
+                <button onclick="window.print()" class="inline-flex items-center gap-2 px-2.5 sm:px-3.5 py-1.5 sm:py-2 text-xs font-semibold dark:text-slate-300 text-slate-700 glass-card hover:border-sky-400 rounded-xl transition-all">
                     <i data-lucide="printer" class="w-4 h-4 text-sky-500 dark:text-sky-400"></i>
                     <span class="hidden sm:inline">Print / PDF</span>
                 </button>
@@ -220,7 +216,7 @@
     </header>
 
     <!-- Main Content Body -->
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full space-y-8 flex-grow">
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 w-full space-y-8 flex-grow">
 
         <!-- Title & Subtitle Banner -->
         <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-4 border-b border-sky-400/20">
@@ -229,12 +225,12 @@
                     <span class="w-2 h-2 rounded-full bg-sky-500 dark:bg-sky-400 animate-pulse"></span>
                     <span>goFLY Technical & On-Page Audit</span>
                 </div>
-                <h1 class="heading-font text-3xl sm:text-4xl font-black dark:text-white text-slate-900 tracking-tight flex items-center gap-3">
+                <h1 class="heading-font text-3xl sm:text-4xl font-black dark:text-white text-slate-900 tracking-tight flex flex-wrap items-center gap-x-3">
                     SEO PERFORMANCE <span class="text-transparent bg-clip-text bg-gradient-to-r from-sky-500 via-blue-600 to-cyan-500 dark:from-sky-400 dark:via-blue-400 dark:to-cyan-300 blue-text-glow">DASHBOARD</span>
                 </h1>
                 <p class="text-sm dark:text-slate-400 text-slate-600 mt-1">Website health snapshot and performance metrics curated for <strong class="dark:text-white text-slate-900 font-semibold">goflybd.com</strong></p>
             </div>
-            <div class="flex items-center gap-2 text-xs dark:text-slate-300 text-slate-700 glass-card px-3.5 py-2 rounded-xl border border-sky-400/20 shadow-sm">
+            <div class="flex items-center gap-2 text-xs dark:text-slate-300 text-slate-700 glass-card px-3.5 py-2 rounded-xl border border-sky-400/20 shadow-sm self-start md:self-auto">
                 <i data-lucide="shield-check" class="w-4 h-4 text-emerald-600 dark:text-emerald-400"></i>
                 <span>Data Scope Verified: <strong class="text-sky-600 dark:text-sky-400 font-mono">33/33 Criteria</strong></span>
             </div>
@@ -372,7 +368,7 @@
             <!-- Key Findings & Critical Highlights Grid -->
             <div class="print-card lg:col-span-8 glass-card rounded-3xl p-6 flex flex-col justify-between">
                 <div>
-                    <div class="flex items-center justify-between pb-3 border-b border-sky-400/20">
+                    <div class="flex flex-wrap items-center justify-between gap-2 pb-3 border-b border-sky-400/20">
                         <div>
                             <h2 class="heading-font text-base font-bold dark:text-white text-slate-900 uppercase tracking-wider">Key Audit Findings</h2>
                             <p class="text-xs dark:text-slate-400 text-slate-600">High impact action items for ranking improvement</p>
@@ -467,12 +463,12 @@
                 </div>
 
                 <div class="flex flex-wrap items-center gap-3 no-print">
-                    <div class="relative min-w-[220px]">
+                    <div class="relative w-full sm:w-auto sm:min-w-[220px]">
                         <i data-lucide="search" class="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"></i>
                         <input type="text" id="checklist-search" placeholder="Search parameters..." class="w-full dark:bg-white/5 bg-white text-xs dark:text-white text-slate-800 placeholder-slate-400 pl-9 pr-3 py-2 rounded-xl border border-sky-400/30 focus:outline-none focus:border-sky-500 transition-all">
                     </div>
 
-                    <div class="flex items-center p-1 dark:bg-white/5 bg-sky-100 rounded-xl border border-sky-400/20 text-xs font-medium">
+                    <div class="flex flex-wrap items-center p-1 dark:bg-white/5 bg-sky-100 rounded-xl border border-sky-400/20 text-xs font-medium">
                         <button onclick="filterChecklist('all')" id="btn-all" class="px-3 py-1.5 rounded-lg text-white bg-gradient-to-r from-sky-500 to-blue-600 font-bold transition-all shadow-md shadow-sky-500/20">All (33)</button>
                         <button onclick="filterChecklist('good')" id="btn-good" class="px-3 py-1.5 rounded-lg dark:text-slate-400 text-slate-600 hover:text-emerald-500 transition-all">Good (19)</button>
                         <button onclick="filterChecklist('improve')" id="btn-improve" class="px-3 py-1.5 rounded-lg dark:text-slate-400 text-slate-600 hover:text-amber-500 transition-all">Improve (8)</button>
@@ -493,26 +489,26 @@
         </section>
 
         <!-- Executive Call to Action Banner -->
-        <section class="print-card glass-card rounded-3xl p-8 border border-sky-500/30 relative overflow-hidden bg-gradient-to-r dark:from-reshad-surface dark:via-reshad-dark dark:to-reshad-surface from-sky-100 via-sky-50 to-sky-100">
+        <section class="print-card glass-card rounded-3xl p-6 sm:p-8 border border-sky-500/30 relative overflow-hidden bg-gradient-to-r dark:from-reshad-surface dark:via-reshad-dark dark:to-reshad-surface from-sky-100 via-sky-50 to-sky-100">
             <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
-                <div class="flex items-center gap-4">
+                <div class="flex items-start sm:items-center gap-4">
                     <div class="p-3 bg-sky-500/10 border border-sky-500/30 rounded-2xl text-sky-600 dark:text-sky-400 shrink-0">
                         <i data-lucide="zap" class="w-7 h-7"></i>
                     </div>
                     <div>
                         <span class="text-xs font-mono font-bold text-sky-600 dark:text-sky-400 uppercase tracking-widest">Reshad Sheikh Portfolio Case Study</span>
-                        <h3 class="heading-font text-2xl font-black dark:text-white text-slate-900 mt-1">Ready to Optimize Your Web Presence?</h3>
+                        <h3 class="heading-font text-xl sm:text-2xl font-black dark:text-white text-slate-900 mt-1">Ready to Optimize Your Web Presence?</h3>
                         <p class="text-xs sm:text-sm dark:text-slate-400 text-slate-600 mt-1 max-w-xl">
                             Combining UI/UX expertise with data-driven Technical SEO to elevate user experience and search ranking performance.
                         </p>
                     </div>
                 </div>
                 <div class="shrink-0 flex flex-wrap gap-3">
-                    <a href="https://reshadsheikh.github.io/#contact" target="_blank" class="px-6 py-3 rounded-full bg-gradient-to-r from-sky-500 to-blue-600 text-white font-bold text-xs hover:from-sky-400 hover:to-blue-500 transition-all shadow-lg shadow-sky-500/25 flex items-center space-x-2">
+                    <a href="contact/" target="_blank" class="px-6 py-3 rounded-full bg-gradient-to-r from-sky-500 to-blue-600 text-white font-bold text-xs hover:from-sky-400 hover:to-blue-500 transition-all shadow-lg shadow-sky-500/25 flex items-center space-x-2">
                         <i data-lucide="mail" class="w-4 h-4"></i>
                         <span>Hire / Contact</span>
                     </a>
-                    <a href="https://reshadsheikh.github.io/" target="_blank" class="px-6 py-3 rounded-full glass-card hover:border-sky-400 dark:text-white text-slate-800 font-semibold text-xs transition-all flex items-center space-x-1.5">
+                    <a href="./" target="_blank" class="px-6 py-3 rounded-full glass-card hover:border-sky-400 dark:text-white text-slate-800 font-semibold text-xs transition-all flex items-center space-x-1.5">
                         <span>Main Portfolio</span>
                         <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
                     </a>
@@ -525,7 +521,7 @@
     <!-- Footer -->
     <footer class="border-t border-sky-400/20 glass-card py-6 text-center text-xs dark:text-slate-400 text-slate-600 no-print">
         <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row justify-between items-center gap-2">
-            <p>© 2026 <strong>goFLY SEO Audit Case Study</strong>. Crafted by <a href="https://reshadsheikh.github.io/" target="_blank" class="text-sky-600 dark:text-sky-400 font-bold hover:underline">Reshad Sheikh</a>.</p>
+            <p>© 2026 <strong>goFLY SEO Audit Case Study</strong>. Crafted by <a href="./" target="_blank" class="text-sky-600 dark:text-sky-400 font-bold hover:underline">Reshad Sheikh</a>.</p>
             <div class="flex items-center gap-4">
                 <a href="https://docs.google.com/spreadsheets/d/1NgBtU8XyiS7eYyWJVDCE0K8Wzqnp4DFFaKMmWgkj5BY/edit?usp=sharing" target="_blank" class="text-sky-600 dark:text-sky-400 font-semibold hover:underline flex items-center gap-1">
                     <i data-lucide="file-spreadsheet" class="w-3.5 h-3.5"></i> Google Sheets Data
@@ -580,6 +576,58 @@
 
         let currentFilter = 'all';
         let searchQuery = '';
+
+        // Mobile Smart Scroll Header Logic
+        (function initMobileScrollHeader() {
+            const header = document.getElementById('main-header');
+            if (!header) return;
+
+            let lastScrollY = window.scrollY;
+            let ticking = false;
+            const mobileBreakpoint = 768; // Applies on mobile view (< 768px)
+            const scrollThreshold = 10;   // Minimum scroll delta to prevent jitter
+
+            function updateHeaderVisibility() {
+                const currentScrollY = Math.max(0, window.scrollY);
+                const isMobile = window.innerWidth < mobileBreakpoint;
+
+                if (!isMobile) {
+                    header.classList.remove('header-hidden');
+                    lastScrollY = currentScrollY;
+                    ticking = false;
+                    return;
+                }
+
+                // Always show at the very top of the page
+                if (currentScrollY <= 20) {
+                    header.classList.remove('header-hidden');
+                } else if (Math.abs(currentScrollY - lastScrollY) > scrollThreshold) {
+                    if (currentScrollY > lastScrollY) {
+                        // Scrolling down -> hide header
+                        header.classList.add('header-hidden');
+                    } else {
+                        // Scrolling up -> reveal header
+                        header.classList.remove('header-hidden');
+                    }
+                    lastScrollY = currentScrollY;
+                }
+
+                ticking = false;
+            }
+
+            window.addEventListener('scroll', () => {
+                if (!ticking) {
+                    window.requestAnimationFrame(updateHeaderVisibility);
+                    ticking = true;
+                }
+            }, { passive: true });
+
+            window.addEventListener('resize', () => {
+                if (window.innerWidth >= mobileBreakpoint) {
+                    header.classList.remove('header-hidden');
+                }
+            }, { passive: true });
+        })();
 
         // Theme Switcher Functionality
         function toggleTheme() {

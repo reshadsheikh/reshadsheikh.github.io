@@ -1,0 +1,55 @@
+{
+  "top": [
+  {
+    "title": "goFLY SEO Technical Audit",
+    "type": "web",
+    "media": "portfolio/seo/gofly-seo-audit/index.html",
+    "thumbnail": "portfolio/seo/gofly-seo-audit/tile-preview.svg",
+    "href": "portfolio/seo/gofly-seo-audit/index.html"
+  },
+  {
+    "title": "Nova Fit Brand",
+    "type": "image",
+    "media": "portfolio/ui-ux/Nova fit app/Nova-Fit-Brand.png",
+    "href": "portfolio/ui-ux/Nova fit app/nova_fit_ui_ux_showcase.html"
+  },
+  {
+    "title": "Nova App Showcase",
+    "type": "gif",
+    "media": "portfolio/ui-ux/Nova fit app/nova-app-showcase.gif",
+    "href": "portfolio/ui-ux/Nova fit app/nova_fit_ui_ux_showcase.html"
+  }
+  ],
+  "bottom": [
+  {
+    "title": "Nova Fit Home",
+    "type": "image",
+    "media": "portfolio/ui-ux/Nova fit app/home-2.png",
+    "href": "portfolio/ui-ux/Nova fit app/nova_fit_ui_ux_showcase.html"
+  },
+  {
+    "title": "Nova Fit Explore",
+    "type": "image",
+    "media": "portfolio/ui-ux/Nova fit app/explore-3.png",
+    "href": "portfolio/ui-ux/Nova fit app/nova_fit_ui_ux_showcase.html"
+  },
+  {
+    "title": "Nova Fit Stats",
+    "type": "image",
+    "media": "portfolio/ui-ux/Nova fit app/stats-4.png",
+    "href": "portfolio/ui-ux/Nova fit app/nova_fit_ui_ux_showcase.html"
+  },
+  {
+    "title": "Nova Fit Sign In",
+    "type": "image",
+    "media": "portfolio/ui-ux/Nova fit app/login-1.png",
+    "href": "portfolio/ui-ux/Nova fit app/nova_fit_ui_ux_showcase.html"
+  },
+  {
+    "title": "Nova Fit Brand System",
+    "type": "image",
+    "media": "portfolio/ui-ux/Nova fit app/BG.png",
+    "href": "portfolio/ui-ux/Nova fit app/nova_fit_ui_ux_showcase.html"
+  }
+  ]
+}
